@@ -3,6 +3,7 @@ import { nextTick } from "vue";
 import loginPageVue from "./components/loginPage.vue";
 import homePageVue from "./view/homePage.vue";
 import ProductDetailVue from "./view/ProductDetail.vue";
+import AdminPageVue from "./view/AdminPage.vue";
 
 
 const router = createRouter({
@@ -25,6 +26,13 @@ const router = createRouter({
             name: "product-detail",
             component: ProductDetailVue,
             meta: { title: "Chi tiết sản phẩm" },
+        },
+
+        {
+            path: "/admin",
+            name: "admin",
+            component: AdminPageVue,
+            meta: { title: "Dashboard" },
         },
 
         {
