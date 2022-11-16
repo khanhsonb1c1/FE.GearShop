@@ -4,6 +4,8 @@ import loginPageVue from "./components/loginPage.vue";
 import homePageVue from "./view/homePage.vue";
 import ProductDetailVue from "./view/ProductDetail.vue";
 import AdminPageVue from "./view/AdminPage.vue";
+import ProductManagerPageVue from "./view/ProductManagerPage.vue";
+import CategoryManagerPageVue from "./view/CategoryManagerPage.vue";
 
 
 const router = createRouter({
@@ -34,6 +36,22 @@ const router = createRouter({
             component: AdminPageVue,
             meta: { title: "Dashboard" },
         },
+
+        {
+            path: "/admin/product",
+            name: "product-manager",
+            component: ProductManagerPageVue,
+            meta: { title: "Dashboard Product" },
+        },
+
+        {
+            path: "/admin/category",
+            name: "category-manager",
+            component: CategoryManagerPageVue,
+            meta: { title: "Dashboard Category" },
+        },
+
+
 
         {
             path: "/login",
