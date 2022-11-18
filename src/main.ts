@@ -6,6 +6,7 @@ import VueLodash from "vue-lodash";
 import router from "./router";
 import { createPinia } from "pinia";
 import axios from "axios";
+// import lodash from "lodash";
 import VueAxios from "vue-axios";
 // import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap/dist/js/bootstrap.js"
@@ -13,6 +14,8 @@ import "bootstrap/dist/js/bootstrap.js"
 const app = createApp(App);
 
 app.use(VueLodash);
+
+// app.use(lodash)
 
 app.use(VueAxios, axios);
 
