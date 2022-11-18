@@ -6,8 +6,8 @@ const product = {
     get_detail(id: string) {
         return gearshop.get(`/api/product/${id}`);
     },
-    get_all() {
-        return gearshop.get(`/api/product`);
+    get_all(params?: object) {
+        return gearshop.get(`/api/product`, params);
     },
 
     update(id: string) {

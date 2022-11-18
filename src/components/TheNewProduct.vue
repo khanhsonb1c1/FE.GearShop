@@ -15,7 +15,7 @@
       <div class="row">
         <div
           class="col-lg-3 col-md-6 col-12"
-          v-for="(item, index) in product"
+          v-for="(item, index) in product_list"
           :key="index"
         >
           <ProductItem :item="item" />
@@ -29,24 +29,11 @@
 import { defineComponent } from "vue";
 import { product } from "../service/product";
 import ProductItem from "./product/ProductItem.vue";
+import { productStore } from "../store/product";
 export default defineComponent({
   data() {
     return {
-      product: [
-        {
-          _id: "" as string,
-          product_id: "" as string,
-          name: "" as string,
-          price: 0 as number,
-          category: {
-            name: "" as string,
-          },
-          imageUrl: "" as string,
-        },
-      ],
-
       page: 1 as number,
-      last_page: 0 as number,
     };
   },
 
@@ -54,16 +41,15 @@ export default defineComponent({
     this.getProducts();
   },
 
+  computed: {
+    product_list() {
+      return productStore().product_list;
+    },
+  },
+
   methods: {
     getProducts() {
-      return product
-        .get_all()
-        .then((res) => {
-          this.product = res.data.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      productStore().getProductList(this.page);
     },
   },
 

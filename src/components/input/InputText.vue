@@ -1,6 +1,6 @@
 <template>
   <div class="input-style-1">
-    <label>Full Name</label>
+    <label>{{ title }}</label>
     <input type="text" :placeholder="placeholder" v-model="model" />
   </div>
   <!-- end input -->

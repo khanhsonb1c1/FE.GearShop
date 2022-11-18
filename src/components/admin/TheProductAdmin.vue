@@ -34,27 +34,8 @@
       <!-- ========== form-elements-wrapper start ========== -->
       <div class="form-elements-wrapper">
         <div class="row">
-          <div class="col-lg-6">
-            <!-- input style start -->
-            <div class="card-style mb-30">
-              <h6 class="mb-25">tạo mới</h6>
-              <InputText
-                title="Test"
-                placeholder="son nek"
-                :value="product.name"
-                @update:value="product.name = $event"
-              />
-              <button @click="handleCheck()">ok</button>
-            </div>
-          </div>
-          <!-- end col -->
-          <div class="col-lg-6">
-            <!-- ======= textarea style start ======= -->
-            <div class="card-style mb-30">
-              <!-- end textarea -->
-            </div>
-          </div>
-          <!-- end col -->
+          <TheNewProductForm />
+          <TheTableProduct />
         </div>
         <!-- end row -->
       </div>
@@ -66,20 +47,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import InputText from "../input/InputText.vue";
-export default defineComponent({
-  data() {
-    return {
-      product: {
-        name: "" as string,
-      },
-    };
-  },
-  methods: {
-    handleCheck() {},
-  },
+import TheNewProductForm from "./product/TheNewProductForm.vue";
+import TheTableProduct from "./product/TheTableProduct.vue";
 
-  components: { InputText },
+export default defineComponent({
+  components: { TheNewProductForm, TheTableProduct },
 });
 </script>
 
