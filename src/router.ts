@@ -6,8 +6,7 @@ import ProductDetailVue from "./view/ProductDetail.vue";
 import AdminPageVue from "./view/AdminPage.vue";
 import ProductManagerPageVue from "./view/ProductManagerPage.vue";
 import CategoryManagerPageVue from "./view/CategoryManagerPage.vue";
-
-
+import CompanyManagerPageVue from "./view/CompanyManagerPage.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -49,6 +48,14 @@ const router = createRouter({
             name: "category-manager",
             component: CategoryManagerPageVue,
             meta: { title: "Dashboard Category" },
+        },
+
+
+        {
+            path: "/admin/company",
+            name: "company-manager",
+            component: CompanyManagerPageVue,
+            meta: { title: "Dashboard Company" },
         },
 
 

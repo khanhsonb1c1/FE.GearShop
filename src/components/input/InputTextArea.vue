@@ -1,7 +1,7 @@
 <template>
   <div class="input-style-1">
     <label>{{ title }}</label>
-    <textarea :placeholder="placeholder" rows="5" v-model="value"></textarea>
+    <textarea :placeholder="placeholder" rows="5" v-model="model"></textarea>
   </div>
   <!-- end textarea -->
   <!-- <div class="input-style-3">

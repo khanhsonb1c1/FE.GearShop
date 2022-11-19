@@ -1,8 +1,9 @@
 <template>
   <div class="input-style-1">
     <label>{{ title }}</label>
-    <input type="text" :placeholder="placeholder" v-model="model" />
+    <input :type="type_of" :placeholder="placeholder" v-model="model" />
   </div>
+
   <!-- end input -->
   <!-- <div class="input-style-2">
       <input type="text" placeholder="Full Name" />
@@ -35,14 +36,22 @@ export default defineComponent({
       required: false,
       default: "",
     },
+    type: {
+      type: String,
+      requied: false,
+      default: "text",
+    },
   },
 
   data() {
     return {
       model: "" as string,
+      type_of: "" as string,
     };
   },
-
+  created() {
+    this.type_of = this.type;
+  },
   watch: {
     value() {
       this.model = this.value;

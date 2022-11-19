@@ -2,7 +2,7 @@
   <TheMenu />
   <main class="main-wrapper">
     <TheHeaderAdmin />
-    <TheCategoriesAdmin />
+    <TheCompanyAdmin />
   </main>
 </template>
 
@@ -11,9 +11,10 @@ import { defineComponent } from "vue";
 import TheMenu from "../components/admin/TheMenu.vue";
 import TheHeaderAdmin from "../components/admin/TheHeaderAdmin.vue";
 import TheCategoriesAdmin from "../components/admin/TheCategoriesAdmin.vue";
+import TheCompanyAdmin from "../components/admin/TheCompanyAdmin.vue";
 
 export default defineComponent({
-  components: { TheMenu, TheHeaderAdmin, TheCategoriesAdmin },
+  components: { TheMenu, TheHeaderAdmin, TheCompanyAdmin },
 });
 </script>
 
