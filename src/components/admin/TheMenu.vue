@@ -26,8 +26,8 @@
             <span class="text">Chung</span>
           </a>
           <ul id="ddmenu_1" class="collapse show dropdown-nav">
-            <li>
-              <a class="active"> Thống kê </a>
+            <li @click="changePage('/admin')">
+              <a class=""> Thống kê </a>
             </li>
           </ul>
         </li>
@@ -57,11 +57,8 @@
             <span class="text">Đơn hàng</span>
           </a>
           <ul id="ddmenu_2" class="collapse dropdown-nav">
-            <li>
-              <a href="settings.html"> Đơn lẻ </a>
-            </li>
-            <li>
-              <a href="blank-page.html"> Đơn sỉ </a>
+            <li @click="changePage('/admin/order')">
+              <a> Đơn lẻ </a>
             </li>
           </ul>
         </li>

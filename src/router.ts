@@ -7,6 +7,8 @@ import AdminPageVue from "./view/AdminPage.vue";
 import ProductManagerPageVue from "./view/ProductManagerPage.vue";
 import CategoryManagerPageVue from "./view/CategoryManagerPage.vue";
 import CompanyManagerPageVue from "./view/CompanyManagerPage.vue";
+import OrderManagerVue from "./view/OrderManager.vue";
+import OrderDetailManagerVue from "./view/OrderDetailManager.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -56,6 +58,20 @@ const router = createRouter({
             name: "company-manager",
             component: CompanyManagerPageVue,
             meta: { title: "Dashboard Company" },
+        },
+
+        {
+            path: "/admin/order",
+            name: "order-manager",
+            component: OrderManagerVue,
+            meta: { title: "Dashboard Order" },
+        },
+
+        {
+            path: "/admin/order/:id",
+            name: "order-detail-manager",
+            component: OrderDetailManagerVue,
+            meta: { title: "Dashboard Order Detail" },
         },
 
 
