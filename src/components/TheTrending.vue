@@ -4,11 +4,8 @@
       <div class="row">
         <div class="col-12">
           <div class="section-title">
-            <h2>Trending Product</h2>
-            <p>
-              There are many variations of passages of Lorem Ipsum available,
-              but the majority have suffered alteration in some form.
-            </p>
+            <h2>Siêu khuyến mãi</h2>
+           
           </div>
         </div>
       </div>
@@ -19,8 +16,8 @@
             <div class="product-image">
               <img src="../assets/images/products/product-1.jpg" />
               <div class="button">
-                <a href="product-details.html" class="btn"
-                  ><i class="lni lni-cart"></i> Add to Cart</a
+                <a  class="btn"
+                  ><i class="lni lni-cart"></i> Mua ngay</a
                 >
               </div>
             </div>

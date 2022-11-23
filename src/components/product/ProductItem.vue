@@ -3,7 +3,7 @@
     <div class="product-image">
       <img :src="getUrl" />
       <div class="button" @click="goToDetailPage(item?._id)">
-        <a class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+        <a class="btn"><i class="lni lni-cart"></i> Mua ngay</a>
       </div>
     </div>
     <div class="product-info">

@@ -4,52 +4,20 @@
     <div class="topbar">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-4 col-md-4 col-12">
-            <div class="top-left">
-              <ul class="menu-top-link">
-                <li>
-                  <div class="select-position">
-                    <select id="select4">
-                      <option value="0" selected>$ USD</option>
-                      <option value="1">€ EURO</option>
-                      <option value="2">$ CAD</option>
-                      <option value="3">₹ INR</option>
-                      <option value="4">¥ CNY</option>
-                      <option value="5">৳ BDT</option>
-                    </select>
-                  </div>
-                </li>
-                <li>
-                  <div class="select-position">
-                    <select id="select5">
-                      <option value="0" selected>English</option>
-                      <option value="1">Español</option>
-                      <option value="2">Filipino</option>
-                      <option value="3">Français</option>
-                      <option value="4">العربية</option>
-                      <option value="5">हिन्दी</option>
-                      <option value="6">বাংলা</option>
-                    </select>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4 col-12">
+          <div class="col-lg-8 col-md-4 col-12">
             <div class="top-middle">
               <ul class="useful-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a>Trang chủ</a></li>
+                <li><a>Sản phẩm</a></li>
+                <li><a>Giới thiệu</a></li>
+                <li><a>Blog</a></li>
+                <li><a>Bảo hành</a></li>
+                <li><a>Liên hệ</a></li>
               </ul>
             </div>
           </div>
           <div class="col-lg-4 col-md-4 col-12">
             <div class="top-end">
-              <div class="user">
-                <i class="lni lni-user"></i>
-                Hello
-              </div>
               <ul class="user-login">
                 <li>
                   <a href="login.html">Sign In</a>
@@ -83,17 +51,17 @@
                 <div class="search-select">
                   <div class="select-position">
                     <select id="select1">
-                      <option selected>All</option>
-                      <option value="1">option 01</option>
+                      <option selected>Tìm kiếm</option>
+                      <!-- <option value="1">option 01</option>
                       <option value="2">option 02</option>
                       <option value="3">option 03</option>
                       <option value="4">option 04</option>
-                      <option value="5">option 05</option>
+                      <option value="5">option 05</option> -->
                     </select>
                   </div>
                 </div>
                 <div class="search-input">
-                  <input type="text" placeholder="Search" />
+                  <input type="text" placeholder="..." />
                 </div>
                 <div class="search-btn">
                   <button><i class="lni lni-search-alt"></i></button>
@@ -109,7 +77,7 @@
                 <i class="lni lni-phone"></i>
                 <h3>
                   Hotline:
-                  <span>(+100) 123 456 7890</span>
+                  <span>(+84) 123 456 7890</span>
                 </h3>
               </div>
               <div class="navbar-cart">
@@ -210,10 +178,10 @@
             <!-- Start Mega Category Menu -->
             <div class="mega-category-menu">
               <span class="cat-button"
-                ><i class="lni lni-menu"></i>All Categories</span
+                ><i class="lni lni-menu"></i>Danh mục sản phẩm</span
               >
               <ul class="sub-category">
-                <li>
+                <!-- <li>
                   <a href="product-grids.html"
                     >Electronics <i class="lni lni-chevron-right"></i
                   ></a>
@@ -229,18 +197,10 @@
                     <li><a href="product-grids.html">Batteries</a></li>
                     <li><a href="product-grids.html">Cables & Adapters</a></li>
                   </ul>
+                </li> -->
+                <li v-for="(item, index) in categories" :key="index">
+                  <a>{{ item.name }}</a>
                 </li>
-                <li><a href="product-grids.html">accessories</a></li>
-                <li><a href="product-grids.html">Televisions</a></li>
-                <li><a href="product-grids.html">best selling</a></li>
-                <li><a href="product-grids.html">top 100 offer</a></li>
-                <li><a href="product-grids.html">sunglass</a></li>
-                <li><a href="product-grids.html">watch</a></li>
-                <li><a href="product-grids.html">man’s product</a></li>
-                <li><a href="product-grids.html">Home Audio & Theater</a></li>
-                <li><a href="product-grids.html">Computers & Tablets </a></li>
-                <li><a href="product-grids.html">Video Games </a></li>
-                <li><a href="product-grids.html">Home Appliances </a></li>
               </ul>
             </div>
             <!-- End Mega Category Menu -->
@@ -269,7 +229,7 @@
                       href="index.html"
                       class="active"
                       aria-label="Toggle navigation"
-                      >Home</a
+                      >Trang chủ</a
                     >
                   </li>
                   <li class="nav-item">
@@ -281,21 +241,16 @@
                       aria-controls="navbarSupportedContent"
                       aria-expanded="false"
                       aria-label="Toggle navigation"
-                      >Pages</a
+                      >danh mục</a
                     >
                     <ul class="sub-menu collapse" id="submenu-1-2">
-                      <li class="nav-item">
-                        <a href="about-us.html">About Us</a>
+                      <li
+                        class="nav-item"
+                        v-for="(item, index) in categories"
+                        :key="index"
+                      >
+                        <a>{{ item.name }}</a>
                       </li>
-                      <li class="nav-item"><a href="faq.html">Faq</a></li>
-                      <li class="nav-item"><a href="login.html">Login</a></li>
-                      <li class="nav-item">
-                        <a href="register.html">Register</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="mail-success.html">Mail Success</a>
-                      </li>
-                      <li class="nav-item"><a href="404.html">404 Error</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
@@ -307,21 +262,15 @@
                       aria-controls="navbarSupportedContent"
                       aria-expanded="false"
                       aria-label="Toggle navigation"
-                      >Shop</a
+                      >Thương hiệu</a
                     >
                     <ul class="sub-menu collapse" id="submenu-1-3">
-                      <li class="nav-item">
-                        <a href="product-grids.html">Shop Grid</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="product-list.html">Shop List</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="product-details.html">shop Single</a>
-                      </li>
-                      <li class="nav-item"><a href="cart.html">Cart</a></li>
-                      <li class="nav-item">
-                        <a href="checkout.html">Checkout</a>
+                      <li
+                        class="nav-item"
+                        v-for="(item, index) in companies"
+                        :key="index"
+                      >
+                        <a>{{ item.name }}</a>
                       </li>
                     </ul>
                   </li>
@@ -334,25 +283,27 @@
                       aria-controls="navbarSupportedContent"
                       aria-expanded="false"
                       aria-label="Toggle navigation"
-                      >Blog</a
+                      >Dịch vụ</a
                     >
                     <ul class="sub-menu collapse" id="submenu-1-4">
                       <li class="nav-item">
-                        <a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
+                        <a>Bảo hành</a>
                       </li>
                       <li class="nav-item">
-                        <a href="blog-single.html">Blog Single</a>
+                        <a>Liên hệ</a>
                       </li>
                       <li class="nav-item">
-                        <a href="blog-single-sidebar.html"
-                          >Blog Single Sibebar</a
-                        >
+                        <a>Vận chuyển</a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a>Giới thiệu</a>
                       </li>
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a href="contact.html" aria-label="Toggle navigation"
-                      >Contact Us</a
+                    <a  aria-label="Toggle navigation"
+                      >Blog</a
                     >
                   </li>
                 </ul>
@@ -365,13 +316,9 @@
         <div class="col-lg-4 col-md-6 col-12">
           <!-- Start Nav Social -->
           <div class="nav-social">
-            <h5 class="title">Follow Us:</h5>
+            <h5 class="title">Mạng xã hội:</h5>
             <ul>
-              <li>
-                <a href="javascript:void(0)"
-                  ><i class="lni lni-facebook-filled"></i
-                ></a>
-              </li>
+             
               <li>
                 <a href="javascript:void(0)"
                   ><i class="lni lni-twitter-original"></i
@@ -382,9 +329,7 @@
                   ><i class="lni lni-instagram"></i
                 ></a>
               </li>
-              <li>
-                <a href="javascript:void(0)"><i class="lni lni-skype"></i></a>
-              </li>
+            
             </ul>
           </div>
           <!-- End Nav Social -->
@@ -397,8 +342,35 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { categoryStore } from "../store/category";
+import { companyStore } from "../store/company";
 
-export default defineComponent({});
+export default defineComponent({
+  computed: {
+    categories() {
+      return categoryStore().category_list;
+    },
+
+    companies() {
+      return companyStore().company_list;
+    },
+  },
+
+  methods: {
+    getCategory() {
+      categoryStore()
+        .getCategoryList()
+        .then((res) => {
+          console.log(res);
+        });
+    },
+
+    getCompany() {
+      companyStore().getcompanyList();
+    },
+  },
+});
 </script>
 
-<style></style>
+<style>
+</style>

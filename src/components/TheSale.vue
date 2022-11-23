@@ -6,16 +6,15 @@
           <div class="inner">
             <div class="content">
               <h2 class="wow fadeInUp" data-wow-delay=".4s">
-                Currently You are using free<br />
-                Lite version of ShopGrids
+                Tuần lễ khuyễn mãi<br />
+                Giảm giá lên đến 30% 
               </h2>
               <p class="wow fadeInUp" data-wow-delay=".6s">
-                Please, purchase full version of the template to get all
-                pages,<br />
-                features and commercial license.
+               Chương trình áp dụng cho khách hàng mua sắm trực tiếp tại cửa hàng hoặc thanh toán online 100%,<br />
+                
               </p>
               <div class="button wow fadeInUp" data-wow-delay=".8s">
-                <a class="btn">Purchase Now</a>
+                <a class="btn">Xem thêm</a>
               </div>
             </div>
           </div>
@@ -77,8 +76,8 @@
             <i class="lni lni-delivery"></i>
           </div>
           <div class="media-body">
-            <h5>Free Shipping</h5>
-            <span>On order over $99</span>
+            <h5>Miễn phí vận chuyển</h5>
+            <span>Thanh toán khi nhận hàng</span>
           </div>
         </li>
         <!-- Money Return -->
@@ -87,8 +86,8 @@
             <i class="lni lni-support"></i>
           </div>
           <div class="media-body">
-            <h5>24/7 Support.</h5>
-            <span>Live Chat Or Call.</span>
+            <h5>Hỗ trợ 24/7</h5>
+            <span>Hotline: 1900.000</span>
           </div>
         </li>
         <!-- Support 24/7 -->
@@ -97,8 +96,8 @@
             <i class="lni lni-credit-cards"></i>
           </div>
           <div class="media-body">
-            <h5>Online Payment.</h5>
-            <span>Secure Payment Services.</span>
+            <h5>Thanh toán trực tuyến.</h5>
+            <span>nhanh chóng, an toàn.</span>
           </div>
         </li>
         <!-- Safe Payment -->
@@ -107,8 +106,8 @@
             <i class="lni lni-reload"></i>
           </div>
           <div class="media-body">
-            <h5>Easy Return.</h5>
-            <span>Hassle Free Shopping.</span>
+            <h5>Bảo hành đơn giản.</h5>
+            <span>Liên hệ admin page.</span>
           </div>
         </li>
       </ul>

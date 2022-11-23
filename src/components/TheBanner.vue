@@ -5,18 +5,12 @@
         <div class="col-lg-8 col-12 custom-padding-right">
           <div class="slider-head">
             <!-- Start Hero Slider -->
-            <div class="hero-slider">
+            <div class="hero-slider" style="">
               <!-- Start Single Slider -->
-              <div
-                v-if="false"
-                class="single-slider"
-                style="
-                  background-image: url(../assets/images/hero/slider-bg1.jpg);
-                "
-              >
+              <div class="single-slider slider_img2">
                 <div class="content">
                   <h2>
-                    <span>No restocking fee ($35 savings)</span>
+                    <span>Sản phẩm đặc biệt</span>
                     M75 Sport Watch
                   </h2>
                   <p>
@@ -24,31 +18,31 @@
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua.
                   </p>
-                  <h3><span>Now Only</span> $320.99</h3>
+                  <h3><span>Chỉ</span> 5.999.000đ</h3>
                   <div class="button">
-                    <a href="product-grids.html" class="btn">Shop Now</a>
+                    <a  class="btn">Mua ngay</a>
                   </div>
                 </div>
               </div>
               <!-- End Single Slider -->
               <!-- Start Single Slider -->
-              <div class="single-slider slider_img1">
+              <!-- <div class="single-slider slider_img1" v-show="!show_banner">
                 <div class="content">
                   <h2>
-                    <span>Big Sale Offer</span>
-                    Get the Best Deal on CCTV Camera
+                    <span>Siêu khuyến mãi</span>
+                    Bàn phím cơ Akko 3104 tokyo
                   </h2>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua.
                   </p>
-                  <h3><span>Combo Only:</span> $590.00</h3>
+                  <h3><span>Chỉ:</span> 2.499.000đ</h3>
                   <div class="button">
-                    <a href="product-grids.html" class="btn">Shop Now</a>
+                    <a h class="btn">Mua ngay</a>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- End Single Slider -->
             </div>
             <!-- End Hero Slider -->
@@ -65,9 +59,9 @@
                 <div class="content">
                   <h2>
                     <span>New line required</span>
-                    iPhone 12 Pro Max
+                    Bàn phím cơ Akko 3104
                   </h2>
-                  <h3>$259.99</h3>
+                  <h3>2.499.000đ</h3>
                 </div>
               </div>
               <!-- End Small Banner -->
@@ -76,10 +70,10 @@
               <!-- Start Small Banner -->
               <div class="hero-small-banner style2">
                 <div class="content">
-                  <h2>Weekly Sale!</h2>
-                  <p>Saving up to 50% off all online store items this week.</p>
+                  <h2>Tuần khuyến mãi!</h2>
+                  <p>Giảm đến 30% cho nhiều sản phẩm.</p>
                   <div class="button">
-                    <a class="btn" href="product-grids.html">Shop Now</a>
+                    <a class="btn" >Xem thêm</a>
                   </div>
                 </div>
               </div>
@@ -97,7 +91,21 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-export default defineComponent({});
+export default defineComponent({
+  data() {
+    return {
+      
+    };
+  },
+
+
+
+  methods: {
+   
+  },
+});
 </script>
 
-<style></style>
+<style>
+
+</style>

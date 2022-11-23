@@ -9,6 +9,8 @@ import CategoryManagerPageVue from "./view/CategoryManagerPage.vue";
 import CompanyManagerPageVue from "./view/CompanyManagerPage.vue";
 import OrderManagerVue from "./view/OrderManager.vue";
 import OrderDetailManagerVue from "./view/OrderDetailManager.vue";
+import CartPageVue from "./view/CartPage.vue";
+import BlogPageVue from "./view/BlogPage.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -29,6 +31,20 @@ const router = createRouter({
             name: "product-detail",
             component: ProductDetailVue,
             meta: { title: "Chi tiết sản phẩm" },
+        },
+
+        {
+            path: "/cart",
+            name: "cart",
+            component: CartPageVue,
+            meta: { title: "Giỏ hàng" },
+        },
+
+        {
+            path: "/blog",
+            name: "blog",
+            component: BlogPageVue,
+            meta: { title: "Blog" },
         },
 
         {
