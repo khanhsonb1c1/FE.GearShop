@@ -20,10 +20,10 @@
             <div class="top-end">
               <ul class="user-login">
                 <li>
-                  <a href="login.html">Sign In</a>
+                  <a>Sign In</a>
                 </li>
                 <li>
-                  <a href="register.html">Register</a>
+                  <a>Register</a>
                 </li>
               </ul>
             </div>
@@ -38,8 +38,8 @@
         <div class="row align-items-center">
           <div class="col-lg-3 col-md-3 col-7">
             <!-- Start Header Logo -->
-            <a class="navbar-brand" href="index.html">
-              <img src="../assets/images/logo/logo.svg" alt="Logo" />
+            <a class="navbar-brand">
+              <img src="../../public/logo_gearshop.png" alt="Logo" />
             </a>
             <!-- End Header Logo -->
           </div>
@@ -96,7 +96,7 @@
                   <div class="shopping-item">
                     <div class="dropdown-cart-header">
                       <span>2 Items</span>
-                      <a href="cart.html">View Cart</a>
+                      <a>View Cart</a>
                     </div>
                     <ul class="shopping-list">
                       <li>
@@ -116,9 +116,7 @@
 
                         <div class="content">
                           <h4>
-                            <a href="product-details.html">
-                              Apple Watch Series 6</a
-                            >
+                            <a> Apple Watch Series 6</a>
                           </h4>
                           <p class="quantity">
                             1x - <span class="amount">$99.00</span>
@@ -133,7 +131,7 @@
                           ><i class="lni lni-close"></i
                         ></a>
                         <div class="cart-img-head">
-                          <a class="cart-img" href="product-details.html"
+                          <a class="cart-img"
                             ><img
                               src="../assets/images/header/cart-items/item2.jpg"
                               alt="#"
@@ -141,9 +139,7 @@
                         </div>
                         <div class="content">
                           <h4>
-                            <a href="product-details.html"
-                              >Wi-Fi Smart Camera</a
-                            >
+                            <a>Wi-Fi Smart Camera</a>
                           </h4>
                           <p class="quantity">
                             1x - <span class="amount">$35.00</span>
@@ -157,7 +153,7 @@
                         <span class="total-amount">$134.00</span>
                       </div>
                       <div class="button">
-                        <a href="checkout.html" class="btn animate">Checkout</a>
+                        <a class="btn animate">Checkout</a>
                       </div>
                     </div>
                   </div>
@@ -302,9 +298,7 @@
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a  aria-label="Toggle navigation"
-                      >Blog</a
-                    >
+                    <a aria-label="Toggle navigation">Blog</a>
                   </li>
                 </ul>
               </div>
@@ -318,7 +312,6 @@
           <div class="nav-social">
             <h5 class="title">Mạng xã hội:</h5>
             <ul>
-             
               <li>
                 <a href="javascript:void(0)"
                   ><i class="lni lni-twitter-original"></i
@@ -329,7 +322,6 @@
                   ><i class="lni lni-instagram"></i
                 ></a>
               </li>
-            
             </ul>
           </div>
           <!-- End Nav Social -->
@@ -356,7 +348,24 @@ export default defineComponent({
     },
   },
 
+  created() {
+    this.checkCate();
+    this.checkCompa();
+  },
+
   methods: {
+    checkCate() {
+      if (categoryStore().category_list[0]._id == "") {
+        this.getCategory();
+      }
+    },
+
+    checkCompa() {
+      if (companyStore().company_list[0]._id == "") {
+        this.getCompany();
+      }
+    },
+
     getCategory() {
       categoryStore()
         .getCategoryList()
@@ -372,5 +381,4 @@ export default defineComponent({
 });
 </script>
 
-<style>
-</style>
+<style></style>

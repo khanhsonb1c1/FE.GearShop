@@ -1,8 +1,8 @@
 <template>
   <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
-      <a href="index.html">
-        <img src="" alt="logo" />
+      <a @click="changePage('/')">
+        <img src="../../../public/logo_gearshop.png" alt="logo" />
       </a>
     </div>
     <nav class="sidebar-nav">

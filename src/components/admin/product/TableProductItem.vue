@@ -34,10 +34,10 @@
       </button>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
         <li class="dropdown-item">
-          <a href="#0" class="text-gray">Remove</a>
+          <a class="text-gray">Chi tiết</a>
         </li>
         <li class="dropdown-item">
-          <a href="#0" class="text-gray">Edit</a>
+          <a class="text-gray" @click="deleteProduct(item?._id)">Xóa</a>
         </li>
       </ul>
     </div>
@@ -47,6 +47,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { formatValueMixin } from "../../../mixins/mixin";
+import { productStore } from "../../../store/product";
 export default defineComponent({
   mixins: [formatValueMixin],
   props: {
@@ -62,6 +63,12 @@ export default defineComponent({
       const link = link_full.replace(`public`, "");
 
       return "http://localhost:8000" + link;
+    },
+  },
+
+  methods: {
+    deleteProduct(id: string) {
+      productStore().deleteProduct(id);
     },
   },
 });

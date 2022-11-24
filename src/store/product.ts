@@ -42,5 +42,16 @@ export const productStore = defineStore({
                 })
             });
         },
+
+        deleteProduct(id: string) {
+            return new Promise((resolve, reject) => {
+                product.delete(id).then((res) => {
+                    this.getProductList(1)
+                    resolve(res)
+                }).catch(err => {
+                    reject(err)
+                })
+            });
+        },
     },
 })

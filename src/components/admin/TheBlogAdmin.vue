@@ -29,24 +29,47 @@
 
       <div class="form-elements-wrapper">
         <div class="row">
-            <TheNewBlog/>
-          <!-- <TheTableBlog /> -->
+          <TheNewBlog />
+          <TheTableBlog />
         </div>
       </div>
     </div>
   </section>
 </template>
-  
-  <script lang="ts">
+
+<script lang="ts">
 import { defineComponent } from "vue";
 import TheTableBlog from "./blog/TheTableBlog.vue";
-import TheNewBlog from "./blog/TheNewBlog.vue"
+import TheNewBlog from "./blog/TheNewBlog.vue";
+import { blogStore } from "../../store/blog";
 export default defineComponent({
-  components: { TheTableBlog,TheNewBlog },
+  data() {
+    return {
+      page: 1 as number,
+    };
+  },
+
+  created() {
+    if (blogStore().blog_list[0]._id == "") {
+      this.getBlogList();
+    }
+  },
+
+  computed: {
+    blog_list() {
+      return blogStore().blog_list;
+    },
+  },
+
+  methods: {
+    getBlogList() {
+      blogStore().getBlogList(this.page);
+    },
+  },
+  components: { TheTableBlog, TheNewBlog },
 });
 </script>
-  
-  <style scoped>
+
+<style scoped>
 @import url("../../assets/assets/css/main.css");
 </style>
-  

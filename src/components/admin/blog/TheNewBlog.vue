@@ -1,128 +1,121 @@
 <template>
-    <div class="col-lg-4">
-      <!-- input style start -->
-      <div class="card-style mb-30">
-        <h6 class="mb-25">tạo mới</h6>
-        <InputText
-          title="Tên sản phẩm"
-          placeholder="..."
-          :value="product.name"
-          @update:value="product.name = $event"
-        />
-  
-        <InputText
-          title="Mã sản phẩm"
-          placeholder="..."
-          :value="product.code"
-          @update:value="product.code = $event"
-        />
-  
-        <InputText
-          title="Giá "
-          placeholder="..."
-          type="number"
-          :value="product.price"
-          @update:value="product.price = $event"
-        />
-  
-        <InputText
-          title="Số lượng trong kho"
-          placeholder="..."
-          type="number"
-          :value="product.quantity"
-          @update:value="product.quantity = $event"
-        />
-  
-        <InputSelection
-          title="Nhóm sản phẩm"
-          placeholder="..."
-          :value="product.categoty"
-          @update:value="product.categoty = $event"
-        />
-  
-        <InputSelection
-          title="Thương hiệu"
-          placeholder="..."
-          :value="product.company"
-          @update:value="product.company = $event"
-        />
-  
-        <InputTextArea
-          title="Mô tả"
-          placeholder="..."
-          :value="product.description"
-          @update:value="product.description = $event"
-        />
-  
-        <div class="input-style-1">
-          <label>Ảnh</label>
-          <input type="file" @change="onFileSelected" />
-        </div>
-  
-        <ButtonField title="Tạo mới" @handleClick="createProduct" />
+  <div class="col-lg-5">
+    <!-- input style start -->
+    <div class="card-style mb-30">
+      <h6 class="mb-25">Bài viết</h6>
+      <InputText
+        title="Tiêu đề"
+        placeholder="..."
+        :value="blog_detail.title"
+        @update:value="blog_detail.title = $event"
+      />
+
+      <InputText
+        title="Mô tả"
+        placeholder="..."
+        :value="blog_detail.description"
+        @update:value="blog_detail.description = $event"
+      />
+      <InputText
+        title="Nội dung"
+        placeholder="Tiêu đề 1"
+        :value="blog_detail.title1"
+        @update:value="blog_detail.title1 = $event"
+      />
+
+      <InputTextArea
+        placeholder="Nội dung 1"
+        :value="blog_detail.content1"
+        @update:value="blog_detail.content1 = $event"
+      />
+
+      <InputText
+        placeholder="Tiêu đề 2"
+        :value="blog_detail.title2"
+        @update:value="blog_detail.title2 = $event"
+      />
+
+      <InputTextArea
+        placeholder="Nội dung 2"
+        :value="blog_detail.content2"
+        @update:value="blog_detail.content2 = $event"
+      />
+
+      <div class="input-style-1">
+        <label>Ảnh</label>
+        <input type="file" @change="onFileSelected" />
       </div>
+
+      <InputText
+        title="Bài viết cho sản phẩm ( Không bắt buộc )"
+        placeholder="Nhập id sản phẩm"
+        :value="blog_detail.product"
+        @update:value="blog_detail.product = $event"
+      />
+
+      <ButtonField title="Tạo mới" @handleClick="createBlog" />
     </div>
-  </template>
-  
-  <script lang="ts">
-  import { defineComponent } from "vue";
-  import InputSelection from "../../input/InputSelection.vue";
-  import InputText from "../../input/InputText.vue";
-  import InputTextArea from "../../input/InputTextArea.vue";
-  import ButtonField from "../../button/Button.vue";
-  import { productStore } from "../../../store/product";
-  
-  export default defineComponent({
-    data() {
-      return {
-        product: {
-          name: "" as string,
-          code: "" as string,
-          quantity: 0 as number,
-          category: "6374f62f0ba000a0f4c121ff" as string,
-          company: "6374f82cb4eeb4f9486b3e6c" as string,
-          price: 0 as number,
-          imgUrl: null as any,
-          discount: 0 as number,
-          description: "" as string,
-        } as any,
-      };
-    },
-    methods: {
-      onFileSelected(event: any) {
-        this.product.imgUrl = event.target.files[0];
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import InputSelection from "../../input/InputSelection.vue";
+import InputText from "../../input/InputText.vue";
+import InputTextArea from "../../input/InputTextArea.vue";
+import ButtonField from "../../button/Button.vue";
+import { blogStore } from "../../../store/blog";
+
+export default defineComponent({
+  data() {
+    return {
+      blog_detail: {
+        product: "" as string,
+        title: "" as string,
+        title1: "" as string,
+        title2: "" as string,
+        content1: "" as string,
+        content2: "" as string,
+        content3: "" as string,
+        created_at: 0 as number,
+        description: "" as string,
+        imageUrl: "" as string,
       },
-  
-      createProduct() {
-        const formData = new FormData();
-        formData.append("imageUrl", this.product.imgUrl);
-        formData.append("name", this.product.name);
-        formData.append("product_id", this.product.code);
-        formData.append("category", this.product.category);
-        formData.append("description", this.product.description);
-        formData.append("quantity", this.product.quantity);
-        formData.append("discount", this.product.discount);
-        formData.append("company", this.product.company);
-        formData.append("price", this.product.price);
-  
-        this.axios({
-          url: "http://localhost:8000/api/product/",
-          method: "post",
-          data: formData,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }).then((res) => {
-          productStore().getProductList(1);
-        });
-      },
+    };
+  },
+  methods: {
+    onFileSelected(event: any) {
+      this.blog_detail.imageUrl = event.target.files[0];
     },
-  
-    components: { InputText, InputTextArea, InputSelection, ButtonField },
-  });
-  </script>
-  
-  <style scoped>
-  @import url("../../../assets/assets/css/main.css");
-  </style>
-  
+
+    createBlog() {
+      const formData = new FormData();
+      formData.append("imageUrl", this.blog_detail.imageUrl);
+      formData.append("title", this.blog_detail.title);
+      formData.append("description", this.blog_detail.description);
+      formData.append("content1", this.blog_detail.content1);
+      formData.append("content2", this.blog_detail.content2);
+      formData.append("title2", this.blog_detail.title2);
+      formData.append("title1", this.blog_detail.title1);
+      formData.append("product", this.blog_detail.product);
+
+      this.axios({
+        url: `${import.meta.env.VITE_APP_GEARSHOP}api/blog/`,
+        method: "post",
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then((res) => {
+        blogStore().getBlogList(1);
+      });
+    },
+  },
+
+  components: { InputText, InputTextArea, InputSelection, ButtonField },
+});
+</script>
+
+<style scoped>
+@import url("../../../assets/assets/css/main.css");
+</style>

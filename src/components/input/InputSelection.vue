@@ -2,11 +2,10 @@
   <div class="select-style-1">
     <label>{{ title }}</label>
     <div class="select-position">
-      <select>
-        <option value="">Select category</option>
-        <option value="">Category one</option>
-        <option value="">Category two</option>
-        <option value="">Category three</option>
+      <select v-model="model">
+        <option v-for="(item, index) in list" :key="index" :value="item._id">
+          {{ item.name }}
+        </option>
       </select>
     </div>
   </div>
@@ -35,15 +34,9 @@ export default defineComponent({
     },
     list: {
       type: Array,
-      default: [],
-      requied: false,
+      requied: true,
     },
     value: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    placeholder: {
       type: String,
       required: false,
       default: "",

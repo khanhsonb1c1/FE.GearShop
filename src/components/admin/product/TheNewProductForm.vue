@@ -26,6 +26,14 @@
       />
 
       <InputText
+        title="Giảm giá (%)"
+        placeholder="..."
+        type="number"
+        :value="product.discount"
+        @update:value="product.discount = $event"
+      />
+
+      <InputText
         title="Số lượng trong kho"
         placeholder="..."
         type="number"
@@ -35,14 +43,14 @@
 
       <InputSelection
         title="Nhóm sản phẩm"
-        placeholder="..."
-        :value="product.categoty"
-        @update:value="product.categoty = $event"
+        :list="categories"
+        :value="product.category"
+        @update:value="product.category = $event"
       />
 
       <InputSelection
         title="Thương hiệu"
-        placeholder="..."
+        :list="companies"
         :value="product.company"
         @update:value="product.company = $event"
       />
@@ -71,6 +79,8 @@ import InputText from "../../input/InputText.vue";
 import InputTextArea from "../../input/InputTextArea.vue";
 import ButtonField from "../../button/Button.vue";
 import { productStore } from "../../../store/product";
+import { categoryStore } from "../../../store/category";
+import { companyStore } from "../../../store/company";
 
 export default defineComponent({
   data() {
@@ -79,8 +89,8 @@ export default defineComponent({
         name: "" as string,
         code: "" as string,
         quantity: 0 as number,
-        category: "6374f62f0ba000a0f4c121ff" as string,
-        company: "6374f82cb4eeb4f9486b3e6c" as string,
+        category: "" as string,
+        company: "" as string,
         price: 0 as number,
         imgUrl: null as any,
         discount: 0 as number,
@@ -88,7 +98,34 @@ export default defineComponent({
       } as any,
     };
   },
+
+  computed: {
+    categories() {
+      return categoryStore().category_list;
+    },
+
+    companies() {
+      return companyStore().company_list;
+    },
+  },
+
+  created() {
+    this.checkCate();
+    this.checkCompa();
+  },
   methods: {
+    checkCate() {
+      if (categoryStore().category_list[0]._id == "") {
+        categoryStore().getCategoryList();
+      }
+    },
+
+    checkCompa() {
+      if (companyStore().company_list[0]._id == "") {
+        companyStore().getcompanyList();
+      }
+    },
+
     onFileSelected(event: any) {
       this.product.imgUrl = event.target.files[0];
     },
@@ -101,12 +138,12 @@ export default defineComponent({
       formData.append("category", this.product.category);
       formData.append("description", this.product.description);
       formData.append("quantity", this.product.quantity);
-      formData.append("discount", this.product.discount);
+      formData.append("sale", this.product.discount);
       formData.append("company", this.product.company);
       formData.append("price", this.product.price);
 
       this.axios({
-        url: "http://localhost:8000/api/product/",
+        url: `${import.meta.env.VITE_APP_GEARSHOP}api/product/`,
         method: "post",
         data: formData,
         headers: {

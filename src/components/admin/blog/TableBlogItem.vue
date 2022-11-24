@@ -8,7 +8,7 @@
     </div>
   </td>
   <td>
-    <p class="text-sm">{{ item?.comment.lenght  }}</p>
+    <p class="text-sm">{{ item?.comment?.length }}</p>
   </td>
 
   <td>
@@ -26,17 +26,17 @@
       </button>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
         <li class="dropdown-item">
-          <a href="#0" class="text-gray">Remove</a>
+          <a href="#0" class="text-gray">Xóa</a>
         </li>
         <li class="dropdown-item">
-          <a href="#0" class="text-gray">Edit</a>
+          <a href="#0" class="text-gray">Chỉnh Sửa</a>
         </li>
       </ul>
     </div>
   </td>
 </template>
-  
-  <script lang="ts">
+
+<script lang="ts">
 import { defineComponent } from "vue";
 import { formatValueMixin } from "../../../mixins/mixin";
 export default defineComponent({
@@ -58,8 +58,7 @@ export default defineComponent({
   },
 });
 </script>
-  
-  <style scoped>
+
+<style scoped>
 @import url("../../../assets/assets/css/main.css");
 </style>
-  
