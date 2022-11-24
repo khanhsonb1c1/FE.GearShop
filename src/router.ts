@@ -12,6 +12,7 @@ import OrderDetailManagerVue from "./view/OrderDetailManager.vue";
 import CartPageVue from "./view/CartPage.vue";
 import BlogPageVue from "./view/BlogPage.vue";
 import BlogDetailPageVue from "./view/BlogDetailPage.vue";
+import BlogManagerVue from "./view/BlogManager.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -82,6 +83,13 @@ const router = createRouter({
             name: "company-manager",
             component: CompanyManagerPageVue,
             meta: { title: "Dashboard Company" },
+        },
+
+        {
+            path: "/admin/blog",
+            name: "blog-manager",
+            component: BlogManagerVue,
+            meta: { title: "Dashboard Blog" },
         },
 
         {
