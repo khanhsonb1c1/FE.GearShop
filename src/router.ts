@@ -11,6 +11,7 @@ import OrderManagerVue from "./view/OrderManager.vue";
 import OrderDetailManagerVue from "./view/OrderDetailManager.vue";
 import CartPageVue from "./view/CartPage.vue";
 import BlogPageVue from "./view/BlogPage.vue";
+import BlogDetailPageVue from "./view/BlogDetailPage.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -45,6 +46,13 @@ const router = createRouter({
             name: "blog",
             component: BlogPageVue,
             meta: { title: "Blog" },
+        },
+
+        {
+            path: "/blog/:id",
+            name: "blog-detail",
+            component: BlogDetailPageVue,
+            meta: { title: "Blog detail" },
         },
 
         {
