@@ -1,8 +1,6 @@
 import { gearshop } from "../http-gearshop";
-const auth = {
-    create(params?: object) {
-        return gearshop.post(`/api/user/`, params);
-    },
+const user = {
+  
     get_detail(id: string) {
         return gearshop.get(`/api/user/${id}`);
     },
@@ -19,6 +17,24 @@ const auth = {
     },
 };
 
+const account = {
+    login(params?: object) {
+        return gearshop.post(`/api/login/`, params);
+    },
+    register(params?: object) {
+        return gearshop.get(`/api/register/`, params);
+    },
+    logout(params?: object) {
+        return gearshop.get(`/api/logout`,params);
+    },
+    refresh(params?: object) {
+        return gearshop.get(`/api/refresh`,params);
+    },
+
+    
+};
 
 
-export { auth };
+
+
+export { user, account };

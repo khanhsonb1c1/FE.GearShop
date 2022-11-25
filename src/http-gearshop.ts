@@ -1,8 +1,10 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios";
+import { authStore } from "../src/store/auth"
 
 async function defaultHeaders() {
     const defaultHeaders = {
-
+        'token': await authStore().token,
+        Accept: "application/json",
     };
     return defaultHeaders;
 

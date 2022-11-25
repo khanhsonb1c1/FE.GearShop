@@ -19,11 +19,15 @@
           <div class="col-lg-4 col-md-4 col-12">
             <div class="top-end">
               <ul class="user-login">
-                <li>
+                
+                <li v-if="getName !=''">
+                  <a>{{getName}}</a>
+                </li>
+                <li @click="changePage('/login')" v-else>
                   <a>Sign In</a>
                 </li>
                 <li>
-                  <a>Register</a>
+                  <a>Logout</a>
                 </li>
               </ul>
             </div>
@@ -52,11 +56,7 @@
                   <div class="select-position">
                     <select id="select1">
                       <option selected>Tìm kiếm</option>
-                      <!-- <option value="1">option 01</option>
-                      <option value="2">option 02</option>
-                      <option value="3">option 03</option>
-                      <option value="4">option 04</option>
-                      <option value="5">option 05</option> -->
+               
                     </select>
                   </div>
                 </div>
@@ -334,6 +334,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { authStore } from "../store/auth";
 import { categoryStore } from "../store/category";
 import { companyStore } from "../store/company";
 
@@ -346,6 +347,10 @@ export default defineComponent({
     companies() {
       return companyStore().company_list;
     },
+
+    getName(){
+      return authStore().user.full_name;
+    }
   },
 
   created() {
@@ -354,6 +359,9 @@ export default defineComponent({
   },
 
   methods: {
+    changePage(link: any) {
+      this.$router.push({ path: `${link}` });
+    },
     checkCate() {
       if (categoryStore().category_list[0]._id == "") {
         this.getCategory();

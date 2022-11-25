@@ -1,103 +1,162 @@
 <template>
-  <div class="contai_main">
-    <div class="main">
-      <input type="checkbox" id="chk" aria-hidden="true" />
-
-      <div class="signup" v-show="showFormResetPass">
-        <form>
-          <label for="chk" aria-hidden="true">Đăng nhập</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            v-model="email"
-          />
-          <input
-            type="Password"
-            name="pswd"
-            placeholder="Mật khẩu"
-            v-model="password"
-          />
-          <span @click="showFormResetPass = !showFormResetPass"
-            >Quên mật khẩu ?</span
-          >
-          <button type="submit">Đăng nhập</button>
-          <!-- <div class="wrapper_icon">
-            <img src="https://img.icons8.com/ios-filled/35/null/mac-os.png" />
-            <img src="https://img.icons8.com/fluency/35/null/google-logo.png" />
-          </div> -->
-        </form>
+  <section class="signin-section">
+    <div class="container-fluid">
+      <!-- ========== title-wrapper start ========== -->
+      <div class="title-wrapper pt-30">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="title mb-30">
+              <h2>Sign in</h2>
+            </div>
+          </div>
+          <!-- end col -->
+          <div class="col-md-6">
+            <div class="breadcrumb-wrapper mb-30">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="#0">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="#0">Auth</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Sign in
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
       </div>
+      <!-- ========== title-wrapper end ========== -->
 
-      <div class="signup" v-show="!showFormResetPass">
-        <form>
-          <label
-            aria-hidden="true"
-            @click="showFormResetPass = !showFormResetPass"
-          >
-            <i class="fa fa-chevron-left" aria-hidden="true"></i>
-            Quên mật khẩu</label
-          >
-          <input
-            type="email"
-            name="email"
-            placeholder="Nhập Email"
-            v-model="emailchange"
-          />
+      <div class="row g-0 auth-row">
+        <div class="col-lg-6">
+          <div class="auth-cover-wrapper bg-primary-100">
+            <div class="auth-cover">
+              <div class="title text-center">
+                <h1 class="text-primary mb-10">Welcome Back</h1>
+                <p class="text-medium">
+                  Sign in to your Existing account to continue
+                </p>
+              </div>
+              <div class="cover-image">
+                <img src="../assets/assets/images/auth/signin-image.svg" alt="" />
+              </div>
+              <div class="shape-image">
+               
+                <img src="../assets/assets/images/auth/shape.svg" alt="" />
 
-          <button type="submit">Xác nhận</button>
-
-          <span @click="showFormResetPass = !showFormResetPass">
-            Về trang Đăng Nhập.</span
-          >
-        </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+        <div class="col-lg-6">
+          <div class="signin-wrapper">
+            <div class="form-wrapper">
+              <h6 class="mb-15">Sign In Form</h6>
+              <p class="text-sm mb-25">
+                Start creating the best possible user experience for you
+                customers.
+              </p>
+              <form action="#">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Email</label>
+                      <input type="email" placeholder="Email" />
+                    </div>
+                  </div>
+                  <!-- end col -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Password</label>
+                      <input type="password" placeholder="Password" />
+                    </div>
+                  </div>
+                  <!-- end col -->
+                  <div class="col-xxl-6 col-lg-12 col-md-6">
+                    <div class="form-check checkbox-style mb-30">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkbox-remember"
+                      />
+                      <label class="form-check-label" for="checkbox-remember">
+                        Remember me next time</label
+                      >
+                    </div>
+                  </div>
+                  <!-- end col -->
+                  <div class="col-xxl-6 col-lg-12 col-md-6">
+                    <div
+                      class="
+                        text-start text-md-end text-lg-start text-xxl-end
+                        mb-30
+                      "
+                    >
+                      <a href="#0" class="hover-underline">Forgot Password?</a>
+                    </div>
+                  </div>
+                  <!-- end col -->
+                  <div class="col-12">
+                    <div
+                      class="
+                        button-group
+                        d-flex
+                        justify-content-center
+                        flex-wrap
+                      "
+                    >
+                      <button
+                        class="main-btn primary-btn btn-hover w-100 text-center"
+                      >
+                        Sign In
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- end row -->
+              </form>
+              <div class="singin-option pt-40">
+                <p class="text-sm text-medium text-center text-gray">
+                  Easy Sign In With
+                </p>
+                <div
+                  class="
+                    button-group
+                    pt-40
+                    pb-40
+                    d-flex
+                    justify-content-center
+                    flex-wrap
+                  "
+                >
+                  <button class="main-btn primary-btn-outline m-2">
+                    <i class="lni lni-facebook-filled mr-10"></i>
+                    Facebook
+                  </button>
+                  <button class="main-btn danger-btn-outline m-2">
+                    <i class="lni lni-google mr-10"></i>
+                    Google
+                  </button>
+                </div>
+                <p class="text-sm text-medium text-dark text-center">
+                  Don’t have any account yet?
+                  <a>Create an account</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
       </div>
-
-      <div class="login">
-        <form>
-          <label for="chk" aria-hidden="true">Đăng ký</label>
-          <input
-            type="text"
-            name="text"
-            placeholder="Họ và Tên"
-            required
-            disabled
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-            disabled
-          />
-          <input
-            type="number"
-            name="phone"
-            placeholder="Số điện thoại"
-            required
-            disabled
-          />
-          <input
-            type="Password"
-            name="pswd"
-            placeholder="Mật khẩu"
-            required
-            disabled
-          />
-          <input
-            type="Password"
-            name="pswd"
-            placeholder="Nhập lại mật khẩu"
-            required
-            disabled
-          />
-          <button disabled>Đăng ký</button>
-        </form>
-      </div>
+      <!-- end row -->
     </div>
-  </div>
-
-  <!-- <AlertErrRegister v-if="error" :title="error" @handleClose="handleCloseErr" /> -->
+  </section>
 </template>
 
 <script lang="ts">
@@ -131,140 +190,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.contai_main {
-  display: flex;
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-  align-items: center;
-  /* min-height: 100vh; */
-  /* background: linear-gradient(to bottom, #fff, #f2f3da, #f2f6b7); */
-}
-
-.main {
-  width: 375px;
-  height: 700px;
-  background: red;
-  overflow: hidden;
-  background: url("../assets/img/logo.jpg") no-repeat center / cover;
-  border-radius: 10px;
-  box-shadow: 5px 20px 50px #000;
-}
-
-#chk {
-  display: none;
-}
-.wrapper_icon {
-  width: 80%;
-  justify-content: center;
-  display: flex;
-  margin: 20px auto;
-  transition: 0.6s ease;
-  cursor: pointer;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-items: baseline;
-}
-img {
-  margin: 0 20px;
-}
-
-i {
-  display: flex;
-  font-size: 18px;
-  justify-content: center;
-  align-items: center;
-  margin-right: 20px;
-}
-span {
-  width: 80%;
-  justify-content: flex-start;
-  display: flex;
-  margin: 20px auto;
-  transition: 0.6s ease;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-span:hover {
-  color: #fff;
-}
-
-.signup {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  animation: fadeIn linear 0.6s;
-}
-
-label {
-  color: #fff;
-  font-size: 2.3em;
-  justify-content: center;
-  display: flex;
-  margin: 60px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.6s ease-in-out;
-}
-
-input {
-  width: 80%;
-  height: 40px;
-  background: #fff;
-  justify-content: center;
-  display: flex;
-  margin: 20px auto;
-  padding: 10px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-}
-
-button {
-  width: 80%;
-  height: 40px;
-  margin: 10px auto;
-
-  justify-content: center;
-  display: block;
-  color: #fff;
-  background: #4f2895;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 20px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  transition: 0.3s ease-in;
-}
-
-button:hover {
-  background: #2a1355;
-}
-.login {
-  height: 650px;
-  background: #eee;
-  border-radius: 60% / 10%;
-  transform: translateY(-180px);
-  transition: 0.6s ease-in-out;
-}
-
-.login label {
-  color: #573b8a;
-  transform: scale(0.6);
-  padding-top: 10px;
-}
-
-#chk:checked ~ .login {
-  transform: translateY(-700px);
-}
-
-#chk:checked ~ .login label {
-  transform: scale(1);
-}
-
-#chk:checked ~ .signup label {
-  transform: scale(0.6);
-}
 </style>

@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { nextTick } from "vue";
-import loginPageVue from "./components/loginPage.vue";
 import homePageVue from "./view/homePage.vue";
 import ProductDetailVue from "./view/ProductDetail.vue";
 import AdminPageVue from "./view/AdminPage.vue";
@@ -13,6 +12,8 @@ import CartPageVue from "./view/CartPage.vue";
 import BlogPageVue from "./view/BlogPage.vue";
 import BlogDetailPageVue from "./view/BlogDetailPage.vue";
 import BlogManagerVue from "./view/BlogManager.vue";
+import loginPageVue from "./view/loginPage.vue";
+import registerPageVue from "./view/registerPage.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -114,27 +115,31 @@ const router = createRouter({
             component: loginPageVue,
             meta: {
                 title: "Đăng nhập",
-                authRequired: true,
+
+            },
+        },
+
+        {
+            path: "/register",
+            name: "register",
+            component: registerPageVue,
+            meta: {
+                title: "Đăng xuất",
+
             },
         },
 
     ],
 });
 
-// router.beforeEach((routeTo, routeFrom, next) => {
-//     const authRequired = routeTo.matched.some((route) => route.meta.authRequired);
-//     if (!authRequired) {
-//         return next();
-//     }
+router.beforeEach((routeTo, routeFrom, next) => {
+    const authRequired = routeTo.matched.some((route) => route.meta.authRequired);
+    if (!authRequired) {
+        return next();
+    }
 
 
-// });
+});
 
-// router.afterEach((to) => {
-//     nextTick(() => {
-//         document.title =
-//             (to.meta.title || to.name) + " | " + import.meta.env.VITE_APP_NAME;
-//     });
-// });
 
 export default router;
