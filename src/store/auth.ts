@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { account } from "../service/auth";
+import { account, user } from "../service/auth";
 
 export const authStore = defineStore({
     id: "auth",
@@ -11,11 +11,31 @@ export const authStore = defineStore({
             _id: null,
             full_name: "" as string,
             address_detail: "" as string,
-            
+
         },
 
+        user_list: [
+            {
+                _id: null,
+                full_name: "" as string,
+                address_detail: "" as string,
+                email: "" as string,
+                role: "" as string,
+            }
+        ],
+
+        user_detail: {
+            _id: null,
+                full_name: "" as string,
+                address_detail: "" as string,
+                email: "" as string,
+                role: "" as string,
+        }
+
     }),
-    getters: {},
+    getters: {
+       
+    },
     actions: {
         login(email: string, password: string) {
             return new Promise((resolve, reject) => {
@@ -43,7 +63,31 @@ export const authStore = defineStore({
                     reject(err)
                 })
             });
+        },
+
+
+        getUserList() {
+            return new Promise((resolve, reject) => {
+                user.get_all().then((res) => {
+                    this.user_list = res.data;
+                    resolve(this.user_list)
+                }).catch(err => {
+                    reject(err)
+                })
+            });
+        },
+
+        deleteUser(id: any){
+            return new Promise((resolve, reject) => {
+                user.delete(id).then((res) => {
+                    this.getUserList()
+                    resolve(this.user_list)
+                }).catch(err => {
+                    reject(err)
+                })
+            });
         }
+
 
 
     },

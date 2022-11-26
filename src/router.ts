@@ -14,6 +14,7 @@ import BlogDetailPageVue from "./view/BlogDetailPage.vue";
 import BlogManagerVue from "./view/BlogManager.vue";
 import loginPageVue from "./view/loginPage.vue";
 import registerPageVue from "./view/registerPage.vue";
+import UserManagerPageVue from "./view/UserManagerPage.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -107,6 +108,12 @@ const router = createRouter({
             meta: { title: "Dashboard Order Detail" },
         },
 
+        {
+            path: "/admin/user",
+            name: "user-manager",
+            component: UserManagerPageVue,
+            meta: { title: "Dashboard User Detail" },
+        },
 
 
         {
