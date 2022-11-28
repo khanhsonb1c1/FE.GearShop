@@ -78,7 +78,7 @@ export default defineComponent({
       } else {
         const link = link_full.replace(`public`, "");
 
-        return "http://localhost:8000" + link;
+        return `${import.meta.env.VITE_APP_GEARSHOP}` + link;
       }
     },
   },

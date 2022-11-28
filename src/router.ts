@@ -15,6 +15,7 @@ import BlogManagerVue from "./view/BlogManager.vue";
 import loginPageVue from "./view/loginPage.vue";
 import registerPageVue from "./view/registerPage.vue";
 import UserManagerPageVue from "./view/UserManagerPage.vue";
+import ProductPageVue from "./components/product/ProductPage.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -49,6 +50,13 @@ const router = createRouter({
             name: "blog",
             component: BlogPageVue,
             meta: { title: "Blog" },
+        },
+
+        {
+            path: "/product",
+            name: "product",
+            component: ProductPageVue,
+            meta: { title: "Product" },
         },
 
         {

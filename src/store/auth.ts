@@ -8,9 +8,10 @@ export const authStore = defineStore({
 
         token: null,
         user: {
-            _id: null,
+            _id: "" as string,
             full_name: "" as string,
             address_detail: "" as string,
+            user_name: "" as string,
 
         },
 
@@ -21,29 +22,32 @@ export const authStore = defineStore({
                 address_detail: "" as string,
                 email: "" as string,
                 role: "" as string,
+                user_name: "" as string,
             }
         ],
 
         user_detail: {
             _id: null,
-                full_name: "" as string,
-                address_detail: "" as string,
-                email: "" as string,
-                role: "" as string,
+            full_name: "" as string,
+            address_detail: "" as string,
+            email: "" as string,
+            role: "" as string,
+            user_name: "" as string,
         }
 
     }),
     getters: {
-       
+
     },
     actions: {
-        login(email: string, password: string) {
+        login(user_name: string, password: string) {
             return new Promise((resolve, reject) => {
                 account.login({
-                    email: email,
+                    user_name: user_name,
                     password: password,
                 }).then((res) => {
-                    this.token = res.data.token;
+                    this.token = res.data.access_token;
+                    this.user = res.data;
                     resolve(this.token)
                 }).catch(err => {
                     reject(err)
@@ -51,10 +55,12 @@ export const authStore = defineStore({
             });
         },
 
-        logout(email: string) {
+
+
+        logout(user_name: string) {
             return new Promise((resolve, reject) => {
                 account.logout({
-                    email: email,
+                    user_name: user_name,
 
                 }).then((res) => {
                     this.token = null;
@@ -77,7 +83,7 @@ export const authStore = defineStore({
             });
         },
 
-        deleteUser(id: any){
+        deleteUser(id: any) {
             return new Promise((resolve, reject) => {
                 user.delete(id).then((res) => {
                     this.getUserList()

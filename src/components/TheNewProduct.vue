@@ -5,7 +5,6 @@
         <div class="col-12">
           <div class="section-title">
             <h2>Sản phẩm mới</h2>
-           
           </div>
         </div>
       </div>
@@ -46,7 +45,7 @@ export default defineComponent({
 
   methods: {
     getProducts() {
-      productStore().getProductList(this.page);
+      productStore().getProductList(this.page, "created_at", "", "");
     },
   },
 

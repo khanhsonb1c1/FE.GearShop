@@ -28,7 +28,7 @@
         <div class="col-lg-6">
           <div class="signin-wrapper">
             <div class="form-wrapper">
-              <h3 class="mb-15" style="text-align: center;">Đăng ký</h3>
+              <h3 class="mb-15" style="text-align: center">Đăng ký</h3>
 
               <form action="#">
                 <div class="row">
@@ -39,6 +39,17 @@
                         type="text"
                         placeholder="Tên đầy đủ"
                         v-model="full_name"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Tài khoản</label>
+                      <input
+                        type="text"
+                        placeholder="tên tài khoản"
+                        v-model="user_name"
                       />
                     </div>
                   </div>
@@ -95,10 +106,7 @@
                   <!-- end col -->
                   <div class="col-xxl-6 col-lg-12 col-md-6">
                     <div
-                      class="
-                        text-start text-md-end text-lg-start text-xxl-end
-                        mb-30
-                      "
+                      class="text-start text-md-end text-lg-start text-xxl-end mb-30"
                     >
                       <a class="hover-underline">Quên mật khẩu ?</a>
                     </div>
@@ -106,18 +114,13 @@
                   <!-- end col -->
                   <div class="col-12">
                     <div
-                      class="
-                        button-group
-                        d-flex
-                        justify-content-center
-                        flex-wrap
-                      "
+                      class="button-group d-flex justify-content-center flex-wrap"
                     >
-                      <button
+                      <div
                         class="main-btn primary-btn btn-hover w-100 text-center"
                       >
                         Đăng ký
-                      </button>
+                      </div>
                       <p v-if="err != ''">{{ err }}</p>
                     </div>
                   </div>
@@ -129,14 +132,7 @@
                   Đăng nhập với
                 </p>
                 <div
-                  class="
-                    button-group
-                    pt-40
-                    pb-40
-                    d-flex
-                    justify-content-center
-                    flex-wrap
-                  "
+                  class="button-group pt-40 pb-40 d-flex justify-content-center flex-wrap"
                 >
                   <button class="main-btn primary-btn-outline m-2">
                     <i class="lni lni-facebook-filled mr-10"></i>
@@ -157,8 +153,8 @@
     </div>
   </section>
 </template>
-  
-  <script lang="ts">
+
+<script lang="ts">
 import { defineComponent } from "vue";
 import TheHeader from "../components/TheHeader.vue";
 import { account, user } from "../service/auth";
@@ -172,6 +168,7 @@ export default defineComponent({
       address: "",
       phone: "",
       full_name: "",
+      user_name: "",
       title: "" as string,
       err: "" as string,
     };
@@ -197,8 +194,7 @@ export default defineComponent({
   components: { TheHeader },
 });
 </script>
-  
-  <style scoped>
+
+<style scoped>
 @import url("../assets/assets/css/main.css");
 </style>
-  

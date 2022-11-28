@@ -41,7 +41,7 @@ export default defineComponent({
       const link_full = this.item?.imageUrl;
       const link = link_full.replace(`public`, "");
 
-      return "http://localhost:8000" + link;
+      return `${import.meta.env.VITE_APP_GEARSHOP}` + link;
     },
   },
 
@@ -53,4 +53,13 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style scoped>
+.product-image {
+  height: 300px !important;
+}
+.product-info {
+  height: 190px !important;
+}
+image {
+}
+</style>

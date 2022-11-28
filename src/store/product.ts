@@ -6,7 +6,7 @@ export const productStore = defineStore({
     id: 'product',
 
     state: () => ({
-
+        showForm: false,
         last_page: 0 as number,
         product_list: [
             {
@@ -29,10 +29,13 @@ export const productStore = defineStore({
 
     },
     actions: {
-        getProductList(page: number) {
+        getProductList(page: number, sort: string, category: string, company: string) {
             return new Promise((resolve, reject) => {
                 product.get_all({
                     page: page,
+                    sort: sort,
+                    category: category,
+                    company: company
                 }).then((res) => {
                     this.product_list = res.data.data,
                         this.last_page = res.data.last_page,
@@ -46,12 +49,16 @@ export const productStore = defineStore({
         deleteProduct(id: string) {
             return new Promise((resolve, reject) => {
                 product.delete(id).then((res) => {
-                    this.getProductList(1)
+                    this.getProductList(1, 'created_at', '', '')
                     resolve(res)
                 }).catch(err => {
                     reject(err)
                 })
             });
+        },
+
+        changeShowForm() {
+            this.showForm = !this.showForm;
         },
     },
 })

@@ -34,8 +34,12 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="input-style-1">
-                      <label>Email</label>
-                      <input type="email" placeholder="Email" v-model="email" />
+                      <label>Tên đăng nhập</label>
+                      <input
+                        type="text"
+                        placeholder="Tên đăng nhập"
+                        v-model="user_name"
+                      />
                     </div>
                   </div>
                   <!-- end col -->
@@ -52,10 +56,7 @@
 
                   <div class="col-xxl-6 col-lg-12 col-md-6">
                     <div
-                      class="
-                        text-start text-md-end text-lg-start text-xxl-end
-                        mb-30
-                      "
+                      class="text-start text-md-end text-lg-start text-xxl-end mb-30"
                     >
                       <a class="hover-underline" style="float: left"
                         >Quên mật khẩu ?</a
@@ -65,18 +66,14 @@
                   <!-- end col -->
                   <div class="col-12">
                     <div
-                      class="
-                        button-group
-                        d-flex
-                        justify-content-center
-                        flex-wrap
-                      "
+                      class="button-group d-flex justify-content-center flex-wrap"
                     >
-                      <button @click="handleLogin()"
+                      <div
+                        @click="handleLogin()"
                         class="main-btn primary-btn btn-hover w-100 text-center"
                       >
                         Đăng nhập
-                      </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -87,14 +84,7 @@
                   Đăng nhập với
                 </p>
                 <div
-                  class="
-                    button-group
-                    pt-40
-                    pb-40
-                    d-flex
-                    justify-content-center
-                    flex-wrap
-                  "
+                  class="button-group pt-40 pb-40 d-flex justify-content-center flex-wrap"
                 >
                   <button class="main-btn primary-btn-outline m-2">
                     <i class="lni lni-facebook-filled mr-10"></i>
@@ -127,7 +117,7 @@ export default defineComponent({
   name: "login-page-view",
   data() {
     return {
-      email: "",
+      user_name: "",
       password: "",
       err: "",
       showErr: false,
@@ -136,7 +126,7 @@ export default defineComponent({
   methods: {
     handleLogin() {
       authStore()
-        .login(this.email, this.password)
+        .login(this.user_name, this.password)
         .then(() => {
           this.$router.push({ path: "home" });
         })

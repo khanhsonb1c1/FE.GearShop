@@ -9,7 +9,6 @@
       <ul>
         <li class="nav-item nav-item-has-children">
           <a
-            href="#0"
             data-bs-toggle="collapse"
             data-bs-target="#ddmenu_1"
             aria-controls="ddmenu_1"
@@ -33,7 +32,6 @@
         </li>
         <li class="nav-item nav-item-has-children">
           <a
-            href="#0"
             class="collapsed"
             data-bs-toggle="collapse"
             data-bs-target="#ddmenu_2"
@@ -65,7 +63,6 @@
 
         <li class="nav-item nav-item-has-children">
           <a
-            href="#0"
             class="collapsed"
             data-bs-toggle="collapse"
             data-bs-target="#ddmenu_3"
@@ -100,7 +97,6 @@
         <span class="divider"><hr /></span>
         <li class="nav-item nav-item-has-children">
           <a
-            href="#0"
             class="collapsed"
             data-bs-toggle="collapse"
             data-bs-target="#ddmenu_4"
@@ -135,14 +131,13 @@
             </li>
 
             <li>
-              <a @click="changePage('/admin/account')"> Tài khoản </a>
+              <a @click="changePage('/admin/user')"> Tài khoản </a>
             </li>
           </ul>
         </li>
 
         <li class="nav-item nav-item-has-children">
           <a
-            href="#0"
             class="collapsed"
             data-bs-toggle="collapse"
             data-bs-target="#ddmenu_5"

@@ -10,6 +10,10 @@ const order = {
         return gearshop.get(`/api/cart`, params);
     },
 
+    get_default(id: string, status: string) {
+        return gearshop.get(`/api/cart/default/?status=${status}&id=${id}`);
+    },
+
     update(id: string) {
         return gearshop.put(`/api/cart/${id}`);
     },

@@ -163,11 +163,14 @@
                 <h4>Bảo hành:</h4>
                 <ul class="normal-list">
                   <li><span>Chính hãng:</span> Theo nhà sản xuất.</li>
-                  <li><span>Bảo hành của shop:</span> 12 tháng, miễn phí đổi trả trong vòng 7 ngày.</li>
-                  <li><span>Bảo hành tận nhà:</span> Khi mua gói bảo hành vàng.</li>
                   <li>
-                    <span>Tổng đài hỗ trợ 24/7:</span> 1900.0000
+                    <span>Bảo hành của shop:</span> 12 tháng, miễn phí đổi trả
+                    trong vòng 7 ngày.
                   </li>
+                  <li>
+                    <span>Bảo hành tận nhà:</span> Khi mua gói bảo hành vàng.
+                  </li>
+                  <li><span>Tổng đài hỗ trợ 24/7:</span> 1900.0000</li>
                 </ul>
               </div>
             </div>
@@ -194,11 +197,12 @@ export default defineComponent({
       quantity: 1 as number,
     };
   },
+
   computed: {
     getUrl() {
       const link_full = this.product?.imageUrl;
       const link = link_full.replace(`public`, "");
-      return "http://localhost:8000" + link;
+      return `${import.meta.env.VITE_APP_GEARSHOP}` + link;
     },
 
     getSale() {
@@ -206,6 +210,10 @@ export default defineComponent({
         this.product?.price - (this.product?.sale * this.product?.price) / 100
       );
     },
+  },
+
+  methods: {
+    handleAddProductToCart() {},
   },
 });
 </script>

@@ -20,7 +20,7 @@
                   </p>
                   <h3><span>Chỉ</span> 5.999.000đ</h3>
                   <div class="button">
-                    <a  class="btn">Mua ngay</a>
+                    <a class="btn">Mua ngay</a>
                   </div>
                 </div>
               </div>
@@ -73,7 +73,7 @@
                   <h2>Tuần khuyến mãi!</h2>
                   <p>Giảm đến 30% cho nhiều sản phẩm.</p>
                   <div class="button">
-                    <a class="btn" >Xem thêm</a>
+                    <a class="btn">Xem thêm</a>
                   </div>
                 </div>
               </div>
@@ -93,19 +93,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   data() {
-    return {
-      
-    };
+    return {};
   },
 
-
-
-  methods: {
-   
-  },
+  methods: {},
 });
 </script>
 
-<style>
-
-</style>
+<style></style>

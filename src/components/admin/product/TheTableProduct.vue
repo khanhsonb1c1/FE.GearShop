@@ -1,5 +1,13 @@
 <template>
-  <div class="col-lg-8">
+  <div class="col-lg-12">
+    <button
+      type="button"
+      class="btn btn-primary"
+      style="margin-bottom: 30px"
+      @click="showCreateForm()"
+    >
+      Thêm mới
+    </button>
     <div class="card-style mb-30">
       <div
         class="title d-flex flex-wrap align-items-center justify-content-between"
@@ -11,8 +19,9 @@
           <div class="select-style-1">
             <div class="select-position select-sm">
               <select class="light-bg">
-                <option value="">Today</option>
-                <option value="">Yesterday</option>
+                <option value="">Ngày tạo</option>
+                <option value="">Giá</option>
+                <option value="">Số lượng</option>
               </select>
             </div>
           </div>
@@ -90,6 +99,10 @@ export default defineComponent({
   methods: {
     getProducts() {
       productStore().getProductList(this.page);
+    },
+
+    showCreateForm() {
+      productStore().changeShowForm();
     },
   },
   components: { TableProductItem },

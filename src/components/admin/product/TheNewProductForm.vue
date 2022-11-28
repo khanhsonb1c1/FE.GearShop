@@ -1,8 +1,16 @@
 <template>
-  <div class="col-lg-4">
+  <div class="col-lg-8 show_form" v-if="show">
     <!-- input style start -->
     <div class="card-style mb-30">
+      <h6
+        class="close_btn"
+        style="float: right; color: red; cursor: pointer"
+        @click="handleClose()"
+      >
+        X
+      </h6>
       <h6 class="mb-25">tạo mới</h6>
+
       <InputText
         title="Tên sản phẩm"
         placeholder="..."
@@ -107,6 +115,9 @@ export default defineComponent({
     companies() {
       return companyStore().company_list;
     },
+    show() {
+      return productStore().showForm;
+    },
   },
 
   created() {
@@ -114,6 +125,9 @@ export default defineComponent({
     this.checkCompa();
   },
   methods: {
+    handleClose() {
+      productStore().changeShowForm();
+    },
     checkCate() {
       if (categoryStore().category_list[0]._id == "") {
         categoryStore().getCategoryList();
@@ -161,4 +175,14 @@ export default defineComponent({
 
 <style scoped>
 @import url("../../../assets/assets/css/main.css");
+
+.show_form {
+  position: fixed !important;
+  max-height: 100vh;
+  overflow-y: scroll;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+}
 </style>

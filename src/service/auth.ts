@@ -1,6 +1,6 @@
 import { gearshop } from "../http-gearshop";
 const user = {
-  
+
     get_detail(id: string) {
         return gearshop.get(`/api/user/${id}`);
     },
@@ -19,19 +19,19 @@ const user = {
 
 const account = {
     login(params?: object) {
-        return gearshop.post(`/api/login/`, params);
+        return gearshop.post(`/api/auth/login/`, params);
     },
     register(params?: object) {
-        return gearshop.get(`/api/register/`, params);
+        return gearshop.get(`/api/auth/register/`, params);
     },
     logout(params?: object) {
-        return gearshop.get(`/api/logout`,params);
+        return gearshop.get(`/api/auth/logout`, params);
     },
     refresh(params?: object) {
-        return gearshop.get(`/api/refresh`,params);
+        return gearshop.get(`/api/auth/refresh`, params);
     },
 
-    
+
 };
 
 

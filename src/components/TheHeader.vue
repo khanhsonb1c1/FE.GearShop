@@ -7,10 +7,10 @@
           <div class="col-lg-8 col-md-4 col-12">
             <div class="top-middle">
               <ul class="useful-links">
-                <li><a>Trang chủ</a></li>
-                <li><a>Sản phẩm</a></li>
+                <li @click="changePage('/')"><a>Trang chủ</a></li>
+                <li @click="changePage('/product')"><a>Sản phẩm</a></li>
                 <li><a>Giới thiệu</a></li>
-                <li><a>Blog</a></li>
+                <li @click="changePage('/blog')"><a>Blog</a></li>
                 <li><a>Bảo hành</a></li>
                 <li><a>Liên hệ</a></li>
               </ul>
@@ -19,9 +19,8 @@
           <div class="col-lg-4 col-md-4 col-12">
             <div class="top-end">
               <ul class="user-login">
-                
-                <li v-if="getName !=''">
-                  <a>{{getName}}</a>
+                <li v-if="getName != ''">
+                  <a>{{ getName }}</a>
                 </li>
                 <li @click="changePage('/login')" v-else>
                   <a>Sign In</a>
@@ -40,7 +39,7 @@
     <div class="header-middle">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-3 col-md-3 col-7">
+          <div class="col-lg-3 col-md-3 col-7" @click="changePage('/')">
             <!-- Start Header Logo -->
             <a class="navbar-brand">
               <img src="../../public/logo_gearshop.png" alt="Logo" />
@@ -56,7 +55,6 @@
                   <div class="select-position">
                     <select id="select1">
                       <option selected>Tìm kiếm</option>
-               
                     </select>
                   </div>
                 </div>
@@ -90,73 +88,11 @@
                 <div class="cart-items">
                   <a href="javascript:void(0)" class="main-btn">
                     <i class="lni lni-cart"></i>
-                    <span class="total-items">2</span>
+                    <span class="total-items">{{ number_item_in_order }}</span>
                   </a>
-                  <!-- Shopping Item -->
-                  <div class="shopping-item">
-                    <div class="dropdown-cart-header">
-                      <span>2 Items</span>
-                      <a>View Cart</a>
-                    </div>
-                    <ul class="shopping-list">
-                      <li>
-                        <a
-                          href="javascript:void(0)"
-                          class="remove"
-                          title="Remove this item"
-                          ><i class="lni lni-close"></i
-                        ></a>
-                        <div class="cart-img-head">
-                          <a class="cart-img" href="product-details.html"
-                            ><img
-                              src="../assets/images/header/cart-items/item1.jpg"
-                              alt="#"
-                          /></a>
-                        </div>
 
-                        <div class="content">
-                          <h4>
-                            <a> Apple Watch Series 6</a>
-                          </h4>
-                          <p class="quantity">
-                            1x - <span class="amount">$99.00</span>
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <a
-                          href="javascript:void(0)"
-                          class="remove"
-                          title="Remove this item"
-                          ><i class="lni lni-close"></i
-                        ></a>
-                        <div class="cart-img-head">
-                          <a class="cart-img"
-                            ><img
-                              src="../assets/images/header/cart-items/item2.jpg"
-                              alt="#"
-                          /></a>
-                        </div>
-                        <div class="content">
-                          <h4>
-                            <a>Wi-Fi Smart Camera</a>
-                          </h4>
-                          <p class="quantity">
-                            1x - <span class="amount">$35.00</span>
-                          </p>
-                        </div>
-                      </li>
-                    </ul>
-                    <div class="bottom">
-                      <div class="total">
-                        <span>Total</span>
-                        <span class="total-amount">$134.00</span>
-                      </div>
-                      <div class="button">
-                        <a class="btn animate">Checkout</a>
-                      </div>
-                    </div>
-                  </div>
+                  <!--! Shopping Item -->
+                  <CartItemPopup />
                   <!--/ End Shopping Item -->
                 </div>
               </div>
@@ -177,23 +113,6 @@
                 ><i class="lni lni-menu"></i>Danh mục sản phẩm</span
               >
               <ul class="sub-category">
-                <!-- <li>
-                  <a href="product-grids.html"
-                    >Electronics <i class="lni lni-chevron-right"></i
-                  ></a>
-                  <ul class="inner-sub-category">
-                    <li><a href="product-grids.html">Digital Cameras</a></li>
-                    <li><a href="product-grids.html">Camcorders</a></li>
-                    <li><a href="product-grids.html">Camera Drones</a></li>
-                    <li><a href="product-grids.html">Smart Watches</a></li>
-                    <li><a href="product-grids.html">Headphones</a></li>
-                    <li><a href="product-grids.html">MP3 Players</a></li>
-                    <li><a href="product-grids.html">Microphones</a></li>
-                    <li><a href="product-grids.html">Chargers</a></li>
-                    <li><a href="product-grids.html">Batteries</a></li>
-                    <li><a href="product-grids.html">Cables & Adapters</a></li>
-                  </ul>
-                </li> -->
                 <li v-for="(item, index) in categories" :key="index">
                   <a>{{ item.name }}</a>
                 </li>
@@ -221,10 +140,7 @@
               >
                 <ul id="nav" class="navbar-nav ms-auto">
                   <li class="nav-item">
-                    <a
-                      href="index.html"
-                      class="active"
-                      aria-label="Toggle navigation"
+                    <a class="active" aria-label="Toggle navigation"
                       >Trang chủ</a
                     >
                   </li>
@@ -337,8 +253,11 @@ import { defineComponent } from "vue";
 import { authStore } from "../store/auth";
 import { categoryStore } from "../store/category";
 import { companyStore } from "../store/company";
+import { orderStore } from "../store/order";
+import CartItemPopup from "./CartItemPopup.vue";
 
 export default defineComponent({
+  components: { CartItemPopup },
   computed: {
     categories() {
       return categoryStore().category_list;
@@ -348,10 +267,20 @@ export default defineComponent({
       return companyStore().company_list;
     },
 
-    getName(){
+    getName() {
       return authStore().user.full_name;
-    }
+    },
+
+    id() {
+      return authStore().user._id;
+    },
+
+    number_item_in_order() {
+      return orderStore().number_order;
+    },
   },
+
+  watch: {},
 
   created() {
     this.checkCate();
@@ -362,6 +291,7 @@ export default defineComponent({
     changePage(link: any) {
       this.$router.push({ path: `${link}` });
     },
+
     checkCate() {
       if (categoryStore().category_list[0]._id == "") {
         this.getCategory();
