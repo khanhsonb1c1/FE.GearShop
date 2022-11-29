@@ -12,6 +12,7 @@ export const authStore = defineStore({
             full_name: "" as string,
             address_detail: "" as string,
             user_name: "" as string,
+            role: "" as string,
 
         },
 
@@ -92,9 +93,28 @@ export const authStore = defineStore({
                     reject(err)
                 })
             });
+        },
+
+
+        authenticateAdmin() {
+            return new Promise((resolve, reject) => {
+                if (this.user.role == 'admin') {
+                    resolve(true)
+                } else {
+                    reject(false)
+                }
+            });
+        },
+
+        authenticateCustomer() {
+            return new Promise((resolve, reject) => {
+                if (this.user.role == 'customer') {
+                    resolve(true)
+                } else {
+                    reject(false)
+                }
+            });
         }
-
-
 
     },
 });

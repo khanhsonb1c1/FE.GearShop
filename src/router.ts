@@ -16,6 +16,7 @@ import loginPageVue from "./view/loginPage.vue";
 import registerPageVue from "./view/registerPage.vue";
 import UserManagerPageVue from "./view/UserManagerPage.vue";
 import ProductPageVue from "./components/product/ProductPage.vue";
+import { authStore } from "./store/auth";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -42,7 +43,10 @@ const router = createRouter({
             path: "/cart",
             name: "cart",
             component: CartPageVue,
-            meta: { title: "Giỏ hàng" },
+            meta: {
+                title: "Giỏ hàng",
+                authRequired: true,
+            },
         },
 
         {
@@ -70,7 +74,10 @@ const router = createRouter({
             path: "/admin",
             name: "admin",
             component: AdminPageVue,
-            meta: { title: "Dashboard" },
+            meta: {
+                title: "Dashboard",
+                authRequiredAdmin: true,
+            },
         },
 
         {
@@ -149,12 +156,34 @@ const router = createRouter({
 
 router.beforeEach((routeTo, routeFrom, next) => {
     const authRequired = routeTo.matched.some((route) => route.meta.authRequired);
-    if (!authRequired) {
-        return next();
-    }
 
+    const authRequiredAdmin = routeTo.matched.some((route) => route.meta.authRequiredAdmin);
+
+    if (authRequiredAdmin) {
+
+        authStore()
+            .authenticateAdmin()
+            .then(() => {
+                return next();
+            })
+            .catch(() => {
+                router.push({ path: "/login" });
+            });
+
+    } else if (authRequired) {
+        authStore()
+            .authenticateCustomer()
+            .then(() => {
+                return next();
+            })
+            .catch(() => {
+                router.push({ path: "/login" });
+            });
+    }
+    else
+
+        return next();
 
 });
-
 
 export default router;
