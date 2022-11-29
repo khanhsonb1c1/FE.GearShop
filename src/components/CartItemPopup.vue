@@ -40,6 +40,12 @@ export default defineComponent({
     },
   },
 
+  created() {
+    if (this.id) {
+      this.getCartDefault();
+    }
+  },
+
   watch: {
     id() {
       this.getCartDefault();

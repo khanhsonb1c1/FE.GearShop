@@ -24,8 +24,8 @@ const account = {
     register(params?: object) {
         return gearshop.get(`/api/auth/register/`, params);
     },
-    logout(params?: object) {
-        return gearshop.get(`/api/auth/logout`, params);
+    logout() {
+        return gearshop.get(`/api/auth/logout`);
     },
     refresh(params?: object) {
         return gearshop.get(`/api/auth/refresh`, params);

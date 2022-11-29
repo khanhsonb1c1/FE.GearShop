@@ -9,13 +9,34 @@ import axios from "axios";
 // import lodash from "lodash";
 import VueAxios from "vue-axios";
 // import "bootstrap/dist/css/bootstrap.css"
-// import "bootstrap/dist/js/bootstrap.js"
+import "bootstrap/dist/js/bootstrap.js"
+
+import VueCookies from 'vue3-cookies'
+
 
 const app = createApp(App);
 
-app.use(VueLodash);
+// globalCookiesConfig({
+//     expireTimes: "7d",
+//     path: "/",
+//     domain: "",
+//     secure: true,
+//     sameSite: "None",
+// });
 
-// app.use(lodash)
+
+app.use(VueCookies);
+
+app.use(VueCookies, {
+    expireTimes: "7d",
+    path: "/",
+    domain: "",
+    secure: true,
+    sameSite: "None"
+});
+
+
+app.use(VueLodash);
 
 app.use(VueAxios, axios);
 

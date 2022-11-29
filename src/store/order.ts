@@ -87,8 +87,10 @@ export const orderStore = defineStore({
                 order
                     .get_default(id, "open")
                     .then((res) => {
+                        console.log(res.data[0]);
                         this.number_order = res.data[0].product.length;
-                        (this.cart_default = res.data[0]), resolve(this.cart_default);
+                        this.cart_default = res.data[0];
+                        resolve(this.cart_default);
                     })
                     .catch((err) => {
                         reject(err);

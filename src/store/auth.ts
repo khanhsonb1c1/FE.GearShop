@@ -49,6 +49,7 @@ export const authStore = defineStore({
                     this.token = res.data.access_token;
                     this.user = res.data;
                     resolve(this.token)
+
                 }).catch(err => {
                     reject(err)
                 })
@@ -56,13 +57,18 @@ export const authStore = defineStore({
         },
 
 
+        setDefault(token: any, user: any) {
+            this.token = token;
+            this.user = user;
 
-        logout(user_name: string) {
+        },
+
+
+
+
+        logout() {
             return new Promise((resolve, reject) => {
-                account.logout({
-                    user_name: user_name,
-
-                }).then((res) => {
+                account.logout().then((res) => {
                     this.token = null;
                     resolve(this.token)
                 }).catch(err => {

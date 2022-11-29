@@ -1,5 +1,5 @@
 <template>
-  <header class="header navbar-area">
+  <header class="header navbar-area" style="padding: 0 !important">
     <!-- Start Topbar -->
     <div class="topbar">
       <div class="container">
@@ -19,13 +19,18 @@
           <div class="col-lg-4 col-md-4 col-12">
             <div class="top-end">
               <ul class="user-login">
-                <li v-if="getName != ''">
+                <li v-if="getName != '' || getName != null">
                   <a>{{ getName }}</a>
                 </li>
-                <li @click="changePage('/login')" v-else>
+                <li
+                  @click="changePage('/login')"
+                  v-if="
+                    getName == null || getName == '' || getName == undefined
+                  "
+                >
                   <a>Sign In</a>
                 </li>
-                <li>
+                <li @click="logout()">
                   <a>Logout</a>
                 </li>
               </ul>
@@ -290,6 +295,12 @@ export default defineComponent({
   methods: {
     changePage(link: any) {
       this.$router.push({ path: `${link}` });
+    },
+
+    logout() {
+      authStore().setDefault("", {});
+      this.$cookies.set("access_token", "");
+      this.$cookies.set("user_info", {});
     },
 
     checkCate() {
