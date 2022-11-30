@@ -127,11 +127,12 @@ export default defineComponent({
   },
   methods: {
     handleLogin() {
+      const { $cookies }: any = this;
       authStore()
         .login(this.user_name, this.password)
         .then((res) => {
-          this.$cookies.set("access_token", res);
-          this.$cookies.set("user_info", authStore().user);
+          $cookies.set("access_token", res);
+          $cookies.set("user_info", authStore().user);
           this.$router.push({ path: "home" });
         })
         .catch((err) => {

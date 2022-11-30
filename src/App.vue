@@ -14,21 +14,24 @@ export default defineComponent({
   },
   methods: {
     check() {
-      if (this.$cookies.get("access_token") && this.$cookies.get("user_info")) {
+      const { $cookies }: any = this;
+      if ($cookies.get("access_token") && $cookies.get("user_info")) {
         this.getData();
       }
     },
     getData() {
+      const { $cookies }: any = this;
       authStore().setDefault(
-        this.$cookies.get("access_token"),
-        this.$cookies.get("user_info")
+        $cookies.get("access_token"),
+        $cookies.get("user_info")
       );
     },
 
     logout() {
+      const { $cookies }: any = this;
       authStore().setDefault(
-        this.$cookies.set("access_token", null),
-        this.$cookies.set("user_info", {})
+        $cookies.set("access_token", null),
+        $cookies.set("user_info", {})
       );
     },
   },

@@ -16,6 +16,7 @@ import loginPageVue from "./view/loginPage.vue";
 import registerPageVue from "./view/registerPage.vue";
 import UserManagerPageVue from "./view/UserManagerPage.vue";
 import ProductPageVue from "./components/product/ProductPage.vue";
+import { authStore } from "./store/auth";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -42,7 +43,10 @@ const router = createRouter({
             path: "/cart",
             name: "cart",
             component: CartPageVue,
-            meta: { title: "Giỏ hàng" },
+            meta: {
+                title: "Giỏ hàng",
+                authRequired: true,
+            },
         },
 
         {
@@ -70,59 +74,60 @@ const router = createRouter({
             path: "/admin",
             name: "admin",
             component: AdminPageVue,
-            meta: { title: "Dashboard" },
+            meta: {
+                title: "Dashboard",
+                authRequiredAdmin: true,
+            },
         },
 
         {
             path: "/admin/product",
             name: "product-manager",
             component: ProductManagerPageVue,
-            meta: { title: "Dashboard Product" },
+            meta: { title: "Dashboard Product", authRequiredAdmin: true },
         },
 
         {
             path: "/admin/category",
             name: "category-manager",
             component: CategoryManagerPageVue,
-            meta: { title: "Dashboard Category" },
+            meta: { title: "Dashboard Category", authRequiredAdmin: true },
         },
-
 
         {
             path: "/admin/company",
             name: "company-manager",
             component: CompanyManagerPageVue,
-            meta: { title: "Dashboard Company" },
+            meta: { title: "Dashboard Company", authRequiredAdmin: true },
         },
 
         {
             path: "/admin/blog",
             name: "blog-manager",
             component: BlogManagerVue,
-            meta: { title: "Dashboard Blog" },
+            meta: { title: "Dashboard Blog", authRequiredAdmin: true },
         },
 
         {
             path: "/admin/order",
             name: "order-manager",
             component: OrderManagerVue,
-            meta: { title: "Dashboard Order" },
+            meta: { title: "Dashboard Order", authRequiredAdmin: true },
         },
 
         {
             path: "/admin/order/:id",
             name: "order-detail-manager",
             component: OrderDetailManagerVue,
-            meta: { title: "Dashboard Order Detail" },
+            meta: { title: "Dashboard Order Detail", authRequiredAdmin: true },
         },
 
         {
             path: "/admin/user",
             name: "user-manager",
             component: UserManagerPageVue,
-            meta: { title: "Dashboard User Detail" },
+            meta: { title: "Dashboard User Detail", authRequiredAdmin: true },
         },
-
 
         {
             path: "/login",
@@ -130,7 +135,6 @@ const router = createRouter({
             component: loginPageVue,
             meta: {
                 title: "Đăng nhập",
-
             },
         },
 
@@ -140,21 +144,37 @@ const router = createRouter({
             component: registerPageVue,
             meta: {
                 title: "Đăng xuất",
-
             },
         },
-
     ],
 });
 
 router.beforeEach((routeTo, routeFrom, next) => {
     const authRequired = routeTo.matched.some((route) => route.meta.authRequired);
-    if (!authRequired) {
-        return next();
-    }
 
+    const authRequiredAdmin = routeTo.matched.some(
+        (route) => route.meta.authRequiredAdmin
+    );
 
+    if (authRequiredAdmin) {
+        authStore()
+            .authenticateAdmin()
+            .then(() => {
+                return next();
+            })
+            .catch(() => {
+                router.push({ path: "/login" });
+            });
+    } else if (authRequired) {
+        authStore()
+            .authenticateCustomer()
+            .then(() => {
+                return next();
+            })
+            .catch(() => {
+                router.push({ path: "/login" });
+            });
+    } else return next();
 });
-
 
 export default router;

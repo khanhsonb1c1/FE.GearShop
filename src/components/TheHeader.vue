@@ -19,7 +19,13 @@
           <div class="col-lg-4 col-md-4 col-12">
             <div class="top-end">
               <ul class="user-login">
-                <li v-if="getName != '' || getName != null">
+                <li @click="changePage('/admin')" v-if="getRole == 'admin'">
+                  <a>Quản lý</a>
+                </li>
+                <li
+                  v-if="getName != '' || getName != null"
+                  @click="changePage('/auth')"
+                >
                   <a>{{ getName }}</a>
                 </li>
                 <li
@@ -276,6 +282,10 @@ export default defineComponent({
       return authStore().user.full_name;
     },
 
+    getRole() {
+      return authStore().user.role;
+    },
+
     id() {
       return authStore().user._id;
     },
@@ -298,9 +308,10 @@ export default defineComponent({
     },
 
     logout() {
+      const { $cookies }: any = this;
       authStore().setDefault("", {});
-      this.$cookies.set("access_token", "");
-      this.$cookies.set("user_info", {});
+      $cookies.set("access_token", "");
+      $cookies.set("user_info", {});
     },
 
     checkCate() {

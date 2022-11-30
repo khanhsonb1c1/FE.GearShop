@@ -2,18 +2,24 @@
   <div class="shopping-item">
     <div class="dropdown-cart-header">
       <span>{{ number_item_in_order }} Sản phẩm</span>
-      <a>Xem chi tiết</a>
+      <router-link to="/cart">
+        <a>Xem chi tiết</a>
+      </router-link>
     </div>
     <ul class="shopping-list">
-      <item-in-cart-popup />
+      <item-in-cart-popup
+        v-for="(item, index) in product"
+        :key="index"
+        :item="item"
+      />
     </ul>
     <div class="bottom">
-      <div class="total">
+      <!-- <div class="total">
         <span>Total</span>
         <span class="total-amount">$134.00</span>
-      </div>
+      </div> -->
       <div class="button">
-        <a class="btn animate">Checkout</a>
+        <a class="btn animate">Giỏ hàng</a>
       </div>
     </div>
   </div>

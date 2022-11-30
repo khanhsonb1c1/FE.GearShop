@@ -4,23 +4,49 @@
       ><i class="lni lni-close"></i
     ></a>
     <div class="cart-img-head">
-      <a class="cart-img" href="product-details.html"
-        ><img src="../assets/images/header/cart-items/item1.jpg" alt="#"
-      /></a>
+      <a class="cart-img"><img :src="getUrl" alt="#" /></a>
     </div>
 
     <div class="content">
       <h4>
-        <a> Apple Watch Series 6</a>
+        <a> {{ item?.product.name }}</a>
       </h4>
-      <p class="quantity">1x - <span class="amount">$99.00</span></p>
+      <p class="quantity">
+        {{ item?.quantity }} -
+        <span class="amount">{{ formatPrice(getPrice) }}</span>
+      </p>
     </div>
   </li>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-export default defineComponent({});
+import { formatValueMixin } from "../../mixins/mixin";
+export default defineComponent({
+  props: {
+    item: {
+      type: Object,
+    },
+  },
+
+  mixins: [formatValueMixin],
+
+  computed: {
+    getUrl() {
+      const link_full = this.item?.product.imageUrl;
+      const link = link_full.replace(`public`, "");
+
+      return `${import.meta.env.VITE_APP_GEARSHOP}` + link;
+    },
+
+    getPrice() {
+      return (
+        this.item?.quantity *
+        ((this.item?.product.price * this.item?.product.sale) / 100)
+      );
+    },
+  },
+});
 </script>
 
 <style></style>
