@@ -5,41 +5,16 @@
         <div class="col-12">
           <div class="section-title">
             <h2>Siêu khuyến mãi</h2>
-           
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-3 col-md-6 col-12">
-          <!-- Start Single Product -->
-          <div class="single-product">
-            <div class="product-image">
-              <img src="../assets/images/products/product-1.jpg" />
-              <div class="button">
-                <a  class="btn"
-                  ><i class="lni lni-cart"></i> Mua ngay</a
-                >
-              </div>
-            </div>
-            <div class="product-info">
-              <span class="category">Watches</span>
-              <h4 class="title">
-                <a href="product-grids.html">Xiaomi Mi Band 5</a>
-              </h4>
-              <ul class="review">
-                <li><i class="lni lni-star-filled"></i></li>
-                <li><i class="lni lni-star-filled"></i></li>
-                <li><i class="lni lni-star-filled"></i></li>
-                <li><i class="lni lni-star-filled"></i></li>
-                <li><i class="lni lni-star"></i></li>
-                <li><span>4.0 Review(s)</span></li>
-              </ul>
-              <div class="price">
-                <span>$199.00</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Single Product -->
+        <div
+          class="col-lg-3 col-md-6 col-12"
+          v-for="(item, index) in product_list"
+          :key="index"
+        >
+          <ProductItem :item="item" />
         </div>
       </div>
     </div>
@@ -48,7 +23,48 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-export default defineComponent({});
+import { product } from "../service/product";
+import ProductItem from "./product/ProductItem.vue";
+export default defineComponent({
+  data() {
+    return {
+      last_page: 0 as number,
+      page: 1 as number,
+      product_list: [
+        {
+          _id: "" as string,
+          product_id: "" as string,
+          name: "" as string,
+          price: 0 as number,
+          category: {
+            name: "" as string,
+          },
+          imageUrl: "" as string,
+          company: {
+            name: "" as string,
+          },
+        },
+      ],
+    };
+  },
+  created() {
+    this.getProduct();
+  },
+  methods: {
+    getProduct() {
+      product
+        .get_all(1, "-sale", "", "")
+        .then((res) => {
+          this.product_list = res.data.data;
+          this.last_page = this.last_page;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  components: { ProductItem },
+});
 </script>
 
 <style></style>

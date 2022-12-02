@@ -26,6 +26,8 @@ export const productStore = defineStore({
 
 
 
+
+
     }),
     getters: {
 
@@ -47,6 +49,8 @@ export const productStore = defineStore({
                 })
             });
         },
+
+
 
         deleteProduct(id: string) {
             return new Promise((resolve, reject) => {

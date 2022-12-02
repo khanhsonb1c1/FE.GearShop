@@ -57,8 +57,21 @@
                   <input
                     :type="text"
                     placeholder="bình luận..."
-                    v-model="model"
+                    v-model="new_comment"
                   />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    class="bi bi-send"
+                    viewBox="0 0 16 16"
+                    @click="createComment()"
+                  >
+                    <path
+                      d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"
+                    />
+                  </svg>
                 </div>
               </div>
             </div>
@@ -89,18 +102,25 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { formatValueMixin } from "../../mixins/mixin";
+import { authStore } from "../../store/auth";
 import { blogStore } from "../../store/blog";
 import BlogListInDetail from "./BlogListInDetail.vue";
 
 export default defineComponent({
   mixins: [formatValueMixin],
   data() {
-    return {};
+    return {
+      new_comment: "" as string,
+    };
   },
 
   computed: {
     id() {
       return this.$route.params.id;
+    },
+
+    user_id() {
+      return authStore().user._id;
     },
 
     blog() {
@@ -126,6 +146,29 @@ export default defineComponent({
   methods: {
     getBlogDetail() {
       blogStore().getBlogDetail(this.id);
+    },
+
+    createComment() {
+      blogStore()
+        .createComment(this.id, this.user_id, this.new_comment)
+        .then((res) => {
+          this.getBlogDetail();
+        })
+        .catch((err) => {});
+    },
+
+    updateComment(id: string) {
+      blogStore()
+        .updateComment(id, this.id, this.user_id, this.new_comment)
+        .then((res) => {})
+        .catch((err) => {});
+    },
+
+    deleteComment(id: string) {
+      blogStore()
+        .deleteComment(id)
+        .then((res) => {})
+        .catch((err) => {});
     },
   },
 
@@ -157,6 +200,14 @@ p {
 }
 .input_cmt input {
   border: none;
-  width: 100%;
+  width: 70%;
+  border-bottom: 1px solid #65647c;
+}
+
+svg {
+  color: #009eff;
+}
+svg:hover {
+  color: red;
 }
 </style>

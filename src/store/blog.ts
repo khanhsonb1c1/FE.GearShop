@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-import { blog } from "../service/blog";
+import { blog, comment } from "../service/blog";
 
 export const blogStore = defineStore({
     id: "blog",
@@ -64,6 +64,53 @@ export const blogStore = defineStore({
                     .get_detail(id)
                     .then((res) => {
                         (this.blog_detail = res.data), resolve(this.blog_detail);
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
+            });
+        },
+
+        createComment(blog: any, user: string, value: string) {
+            return new Promise((resolve, reject) => {
+                comment
+                    .create({
+                        blog: blog,
+                        user: user,
+                        content: value,
+                    })
+                    .then((res) => {
+                        resolve(res)
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
+            });
+        },
+
+        updateComment(id: string, blog: any, user: string, value: string) {
+            return new Promise((resolve, reject) => {
+                comment
+                    .update(id, {
+                        blog: blog,
+                        user: user,
+                        content: value,
+                    })
+                    .then((res) => {
+                        resolve(res)
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
+            });
+        },
+
+        deleteComment(id: string) {
+            return new Promise((resolve, reject) => {
+                comment
+                    .delete(id)
+                    .then((res) => {
+                        resolve(res)
                     })
                     .catch((err) => {
                         reject(err);

@@ -30,8 +30,8 @@ const comment = {
         return gearshop.get(`/api/comment`);
     },
 
-    update(id: string) {
-        return gearshop.put(`/api/comment/${id}`);
+    update(id: string, params?: object) {
+        return gearshop.put(`/api/comment/${id}`, params);
     },
 
     delete(id: string) {

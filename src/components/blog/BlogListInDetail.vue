@@ -22,6 +22,18 @@ export default defineComponent({
       return blogStore().blog_list;
     },
   },
+
+  mounted() {
+    this.check();
+  },
+
+  methods: {
+    check() {
+      if (this.blog_list[0]._id == "") {
+        blogStore().getBlogList(1);
+      }
+    },
+  },
 });
 </script>
 
