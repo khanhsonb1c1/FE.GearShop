@@ -90,7 +90,6 @@
 import { defineComponent } from "vue";
 import { formatValueMixin } from "../../mixins/mixin";
 import { blogStore } from "../../store/blog";
-import BlogItem from "./BlogItem.vue";
 import BlogListInDetail from "./BlogListInDetail.vue";
 
 export default defineComponent({
@@ -131,7 +130,6 @@ export default defineComponent({
   },
 
   components: {
-    BlogItem,
     BlogListInDetail,
   },
 });

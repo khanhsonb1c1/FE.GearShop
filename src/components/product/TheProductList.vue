@@ -31,10 +31,7 @@ export default defineComponent({
     };
   },
 
-  created() {
-    this.getProducts();
-    this.checkCate();
-  },
+  created() {},
 
   computed: {
     product_list() {
@@ -46,25 +43,7 @@ export default defineComponent({
     },
   },
 
-  methods: {
-    getProducts() {
-      productStore().getProductList(this.page, "created_at", "", "");
-    },
-
-    checkCate() {
-      if (categoryStore().category_list[0]._id == "") {
-        this.getCategory();
-      }
-    },
-
-    getCategory() {
-      categoryStore()
-        .getCategoryList()
-        .then((res) => {
-          console.log(res);
-        });
-    },
-  },
+  methods: {},
 
   components: { ProductItem, TheFilterMenu },
 });

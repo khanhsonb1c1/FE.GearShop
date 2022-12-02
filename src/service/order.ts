@@ -14,8 +14,8 @@ const order = {
         return gearshop.get(`/api/cart/default/?status=${status}&id=${id}`);
     },
 
-    update(id: string) {
-        return gearshop.put(`/api/cart/${id}`);
+    update(id: string, params?: object) {
+        return gearshop.put(`/api/cart/${id}`, params);
     },
 
     delete(id: string) {
@@ -28,8 +28,8 @@ const product_in_order = {
         return gearshop.post(`/api/productInCart/`, params);
     },
 
-    update(id: string) {
-        return gearshop.put(`/api/productInCart/${id}`);
+    update(id?: string, params?: object) {
+        return gearshop.put(`/api/productInCart/${id}`, params);
     },
 
     delete(id: string) {

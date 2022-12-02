@@ -1,6 +1,6 @@
 <template>
   <li>
-    <a href="javascript:void(0)" class="remove" title="Remove this item"
+    <a href="javascript:void(0)" class="remove" title="Xóa khỏi giỏ hàng"
       ><i class="lni lni-close"></i
     ></a>
     <div class="cart-img-head">
@@ -11,10 +11,7 @@
       <h4>
         <a> {{ item?.product.name }}</a>
       </h4>
-      <p class="quantity">
-        {{ item?.quantity }} -
-        <span class="amount">{{ formatPrice(getPrice) }}</span>
-      </p>
+      <p class="quantity">Số lượng: {{ item?.quantity }}</p>
     </div>
   </li>
 </template>
@@ -37,13 +34,6 @@ export default defineComponent({
       const link = link_full.replace(`public`, "");
 
       return `${import.meta.env.VITE_APP_GEARSHOP}` + link;
-    },
-
-    getPrice() {
-      return (
-        this.item?.quantity *
-        ((this.item?.product.price * this.item?.product.sale) / 100)
-      );
     },
   },
 });

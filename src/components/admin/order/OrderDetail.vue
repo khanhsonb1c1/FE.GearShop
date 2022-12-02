@@ -129,7 +129,6 @@ export default defineComponent({
           x + ((y.product.price * (100 - y.product.sale)) / 100) * y.quantity
         );
       }
-      //  x.product.price * (100 - x.product.sale) / 100;
       const total = arr.reduce(pricehandler, 0);
 
       return total;

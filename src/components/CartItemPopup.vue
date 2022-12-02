@@ -18,9 +18,11 @@
         <span>Total</span>
         <span class="total-amount">$134.00</span>
       </div> -->
-      <div class="button">
-        <a class="btn animate">Giỏ hàng</a>
-      </div>
+      <router-link to="/cart" style="width: 100%">
+        <div class="button">
+          <a class="btn animate">Giỏ hàng</a>
+        </div></router-link
+      >
     </div>
   </div>
 </template>

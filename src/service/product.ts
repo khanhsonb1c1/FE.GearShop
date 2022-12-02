@@ -6,12 +6,12 @@ const product = {
     get_detail(id: string) {
         return gearshop.get(`/api/product/${id}`);
     },
-    get_all(params?: object) {
-        return gearshop.get(`/api/product`, params);
+    get_all(page: number, sort: string, category: string, company: string) {
+        return gearshop.get(`/api/product?page=${page}&sort=${sort}&category=${category}&company=${company}`);
     },
 
-    update(id: string) {
-        return gearshop.put(`/api/product/${id}`);
+    update(id: string, params?: object) {
+        return gearshop.put(`/api/product/${id}`, params);
     },
 
     delete(id: string) {

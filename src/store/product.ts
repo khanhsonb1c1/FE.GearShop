@@ -24,6 +24,8 @@ export const productStore = defineStore({
             }
         ],
 
+
+
     }),
     getters: {
 
@@ -31,12 +33,12 @@ export const productStore = defineStore({
     actions: {
         getProductList(page: number, sort: string, category: string, company: string) {
             return new Promise((resolve, reject) => {
-                product.get_all({
-                    page: page,
-                    sort: sort,
-                    category: category,
-                    company: company
-                }).then((res) => {
+                product.get_all(
+                    page,
+                    sort,
+                    category,
+                    company
+                ).then((res) => {
                     this.product_list = res.data.data,
                         this.last_page = res.data.last_page,
                         resolve(this.product_list)

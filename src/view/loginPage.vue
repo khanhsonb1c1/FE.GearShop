@@ -59,8 +59,10 @@
                       <div
                         class="text-start text-md-end text-lg-start text-xxl-end mb-30"
                       >
-                        <a class="hover-underline" style="float: left"
-                          >Quên mật khẩu ?</a
+                        <router-link to="/register">
+                          <a class="hover-underline" style="float: left"
+                            >Đăng ký</a
+                          ></router-link
                         >
                       </div>
                     </div>

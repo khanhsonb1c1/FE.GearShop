@@ -1,6 +1,6 @@
 <template>
   <ProductSlide :product="product" />
-  <ProductReview />
+  <ProductReview v-show="product.blog.length >= 1" :id="product.blog[0]" />
 </template>
 
 <script lang="ts">
@@ -13,6 +13,7 @@ export default defineComponent({
   data() {
     return {
       product: {
+        blog: [],
         name: "" as string,
         price: 0 as number,
         sale: 0 as number,
