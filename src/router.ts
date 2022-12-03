@@ -45,7 +45,7 @@ const router = createRouter({
             component: CartPageVue,
             meta: {
                 title: "Giỏ hàng",
-                authRequired: true,
+                authRequiredAdminAndCustomer: true,
 
 
             },
@@ -152,10 +152,13 @@ const router = createRouter({
 });
 
 router.beforeEach((routeTo, routeFrom, next) => {
-    const authRequired = routeTo.matched.some((route) => route.meta.authRequired);
 
     const authRequiredAdmin = routeTo.matched.some(
         (route) => route.meta.authRequiredAdmin
+    );
+
+    const authRequiredAdminAndCustomer = routeTo.matched.some(
+        (route) => route.meta.authRequiredAdminAndCustomer
     );
 
     if (authRequiredAdmin) {
@@ -167,16 +170,17 @@ router.beforeEach((routeTo, routeFrom, next) => {
             .catch(() => {
                 router.push({ path: "/login" });
             });
-    } else if (authRequired) {
+
+    } else if (authRequiredAdminAndCustomer) {
         authStore()
-            .authenticateCustomer()
+            .checkLogin()
             .then(() => {
                 return next();
             })
             .catch(() => {
                 router.push({ path: "/login" });
             });
-    } else return next();
+    } return next();
 });
 
 export default router;

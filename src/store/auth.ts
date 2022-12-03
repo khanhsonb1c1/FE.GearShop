@@ -86,6 +86,16 @@ export const authStore = defineStore({
             });
         },
 
+        checkLogin() {
+            return new Promise((resolve, reject) => {
+                if (this.user._id != '') {
+                    resolve(true)
+                } else {
+                    reject(false)
+                }
+            });
+        },
+
 
 
 
@@ -122,6 +132,8 @@ export const authStore = defineStore({
                 })
             });
         }
+
+        
 
 
 
