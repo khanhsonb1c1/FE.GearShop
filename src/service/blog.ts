@@ -39,4 +39,24 @@ const comment = {
     },
 };
 
-export { blog, comment };
+const rep_comment = {
+    create(params?: object) {
+        return gearshop.post(`/api/repcomment/`, params);
+    },
+    get_detail(id: string) {
+        return gearshop.get(`/api/repcomment/${id}`);
+    },
+    get_all() {
+        return gearshop.get(`/api/repcomment`);
+    },
+
+    update(id: string, params?: object) {
+        return gearshop.put(`/api/repcomment/${id}`, params);
+    },
+
+    delete(id: string) {
+        return gearshop.delete(`/api/repcomment/${id}`);
+    },
+};
+
+export { blog, comment, rep_comment };

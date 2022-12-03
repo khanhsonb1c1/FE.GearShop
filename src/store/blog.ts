@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-import { blog, comment } from "../service/blog";
+import { blog, comment,rep_comment } from "../service/blog";
 
 export const blogStore = defineStore({
     id: "blog",
@@ -16,8 +16,6 @@ export const blogStore = defineStore({
             },
         ],
 
-
-
         last_page: 0 as number,
 
         blog_detail: {
@@ -32,6 +30,7 @@ export const blogStore = defineStore({
             description: "" as string,
             imageUrl: "" as string,
             comment: [{
+                _id: "" as string,
                 created_at: 0 as number,
                 content: '' as string,
                 user: {
@@ -88,12 +87,10 @@ export const blogStore = defineStore({
             });
         },
 
-        updateComment(id: string, blog: any, user: string, value: string) {
+        updateComment(id: string, value: string) {
             return new Promise((resolve, reject) => {
                 comment
                     .update(id, {
-                        blog: blog,
-                        user: user,
                         content: value,
                     })
                     .then((res) => {
@@ -108,6 +105,52 @@ export const blogStore = defineStore({
         deleteComment(id: string) {
             return new Promise((resolve, reject) => {
                 comment
+                    .delete(id)
+                    .then((res) => {
+                        resolve(res)
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
+            });
+        },
+
+
+        createRepComment(id: any, user: string, value: string) {
+            return new Promise((resolve, reject) => {
+                rep_comment
+                    .create({
+                        comment: id,
+                        user: user,
+                        content: value,
+                    })
+                    .then((res) => {
+                        resolve(res)
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
+            });
+        },
+
+        updateRepComment(id: string, value: string) {
+            return new Promise((resolve, reject) => {
+                rep_comment
+                    .update(id, {
+                        content: value,
+                    })
+                    .then((res) => {
+                        resolve(res)
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
+            });
+        },
+
+        deleteRepComment(id: string) {
+            return new Promise((resolve, reject) => {
+                rep_comment
                     .delete(id)
                     .then((res) => {
                         resolve(res)

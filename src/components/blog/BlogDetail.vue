@@ -76,20 +76,12 @@
               </div>
             </div>
 
-            <div
-              class="box_comment"
+            <Comment
               v-for="(comment, index) in blog.comment"
               :key="index"
-            >
-              <img
-                src="https://img.icons8.com/ios-filled/50/null/gender-neutral-user.png"
-              />
+              :comment="comment"
+            />
 
-              <div class="box_content">
-                <span>{{ comment.user.full_name }}</span>
-                <p>{{ comment.content }}</p>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -105,6 +97,7 @@ import { formatValueMixin } from "../../mixins/mixin";
 import { authStore } from "../../store/auth";
 import { blogStore } from "../../store/blog";
 import BlogListInDetail from "./BlogListInDetail.vue";
+import Comment from "./Comment.vue";
 
 export default defineComponent({
   mixins: [formatValueMixin],
@@ -159,7 +152,7 @@ export default defineComponent({
 
     updateComment(id: string) {
       blogStore()
-        .updateComment(id, this.id, this.user_id, this.new_comment)
+        .updateComment(id, this.new_comment)
         .then((res) => {})
         .catch((err) => {});
     },
@@ -174,6 +167,7 @@ export default defineComponent({
 
   components: {
     BlogListInDetail,
+    Comment,
   },
 });
 </script>
