@@ -7,7 +7,8 @@ export const productStore = defineStore({
 
     state: () => ({
         showForm: false,
-        last_page: 0 as number,
+        last_page: 1 as number,
+        current_page: 1 as number,
         product_list: [
             {
                 _id: "" as string,
@@ -24,10 +25,6 @@ export const productStore = defineStore({
             }
         ],
 
-
-
-
-
     }),
     getters: {
 
@@ -41,9 +38,11 @@ export const productStore = defineStore({
                     category,
                     company
                 ).then((res) => {
-                    this.product_list = res.data.data,
-                        this.last_page = res.data.last_page,
-                        resolve(this.product_list)
+                    this.product_list = res.data.data;
+                    this.last_page = res.data.last_page;
+                    this.current_page = res.data.current_page;
+
+                    resolve(res)
                 }).catch(err => {
                     reject(err)
                 })

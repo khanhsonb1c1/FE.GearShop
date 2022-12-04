@@ -105,6 +105,13 @@
             <ProductItem :item="item" />
           </div>
         </div>
+
+        <pagination
+          :page="page"
+          :current_page="current_page"
+          :last_page="last_page"
+          @update:page="page = $event"
+        />
       </div>
     </div>
   </section>
@@ -117,11 +124,14 @@ import { productStore } from "../../store/product";
 import ProductItem from "./ProductItem.vue";
 import TheFilterMenu from "./TheFilterMenu.vue";
 import { companyStore } from "../../store/company";
+import Pagination from "../animation/Pagination.vue";
 
 export default defineComponent({
   data() {
     return {
       page: 1 as number,
+      last_page: 0 as number,
+      current_page: 0 as number,
       filter: {
         category: "" as string,
         company: "" as string,
@@ -155,6 +165,12 @@ export default defineComponent({
     },
   },
 
+  watch: {
+    page() {
+      this.getProducts();
+    },
+  },
+
   methods: {
     handleChooseCate(id: string, name: string) {
       this.filter.category = id;
@@ -174,12 +190,17 @@ export default defineComponent({
       this.filter_name.company = name;
     },
     getProducts() {
-      productStore().getProductList(
-        this.page,
-        this.filter.sort,
-        this.filter.category,
-        this.filter.company
-      );
+      productStore()
+        .getProductList(
+          this.page,
+          this.filter.sort,
+          this.filter.category,
+          this.filter.company
+        )
+        .then((res: any) => {
+          this.last_page = res.data.last_page;
+          this.current_page = res.data.current_page;
+        });
     },
 
     checkCate() {
@@ -197,7 +218,7 @@ export default defineComponent({
     },
   },
 
-  components: { ProductItem, TheFilterMenu },
+  components: { ProductItem, TheFilterMenu, Pagination },
 });
 </script>
 

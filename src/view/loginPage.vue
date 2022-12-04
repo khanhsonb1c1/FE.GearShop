@@ -55,7 +55,7 @@
                       </div>
                     </div>
 
-                    <div class="col-xxl-6 col-lg-12 col-md-6">
+                    <!-- <div class="col-xxl-6 col-lg-12 col-md-6">
                       <div
                         class="text-start text-md-end text-lg-start text-xxl-end mb-30"
                       >
@@ -65,7 +65,7 @@
                           ></router-link
                         >
                       </div>
-                    </div>
+                    </div> -->
                     <!-- end col -->
                     <div class="col-12">
                       <div
@@ -76,6 +76,19 @@
                           class="main-btn primary-btn btn-hover w-100 text-center"
                         >
                           Đăng nhập
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12" style="margin-top: 30px">
+                      <div
+                        class="button-group d-flex justify-content-center flex-wrap"
+                      >
+                        <div
+                          @click="register()"
+                          class="main-btn primary-btn btn-hover w-100 text-center"
+                        >
+                          Đăng ký
                         </div>
                       </div>
                     </div>
@@ -128,6 +141,9 @@ export default defineComponent({
     };
   },
   methods: {
+    register() {
+      this.$router.push({ path: "/register" });
+    },
     handleLogin() {
       const { $cookies }: any = this;
       authStore()

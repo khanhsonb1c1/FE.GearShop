@@ -30,18 +30,17 @@
                 aria-expanded="false"
               >
                 <i class="lni lni-alarm"></i>
-                <span>2</span>
+                <span>0</span>
               </button>
               <ul
                 class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="notification"
               >
                 <li>
-                  <a href="#0">
+                  <a>
                     <div class="image">
                       <img
-                        src="../../assets/assets/images/lead/lead-6.png"
-                        alt=""
+                        src="https://img.icons8.com/ios-glyphs/60/null/administrator-male.png"
                       />
                     </div>
                     <div class="content">
@@ -90,14 +89,14 @@
                 aria-expanded="false"
               >
                 <i class="lni lni-envelope"></i>
-                <span>3</span>
+                <span>0</span>
               </button>
               <ul
                 class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="message"
               >
                 <li>
-                  <a href="#0">
+                  <a>
                     <div class="image">
                       <img src="assets/images/lead/lead-5.png" alt="" />
                     </div>
@@ -121,7 +120,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#0">
+                  <a>
                     <div class="image">
                       <img
                         src="../../assets/assets/images/lead/lead-1.png"
@@ -156,11 +155,10 @@
               >
                 <div class="profile-info">
                   <div class="info">
-                    <h6>John Doe</h6>
+                    <h6>Admin</h6>
                     <div class="image">
                       <img
-                        src="assets/images/profile/profile-image.png"
-                        alt=""
+                        src="https://img.icons8.com/ios-glyphs/60/null/administrator-male.png"
                       />
                       <span class="status"></span>
                     </div>

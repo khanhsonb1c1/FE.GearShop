@@ -1,54 +1,59 @@
 <template>
-  <td>
-    <p class="text-sm">{{ item?._id }}</p>
-  </td>
-  <td>
-    <p class="text-sm">{{ item?.full_name }}</p>
-  </td>
-  <td>
-    <p
-      :class="[
-        item?.role == 'admin' ? 'success-btn' : 'warning-btn',
-        'status-btn ',
-      ]"
-    >
-      {{ item?.role }}
-    </p>
-  </td>
-  <td>
-    <p class="text-sm">{{ item?.address_detail }}</p>
-  </td>
-  <td>
-    <p class="text-sm">{{ item?.phone }}</p>
-  </td>
+  <tr>
+    <td>
+      <p class="text-sm">{{ item?._id }}</p>
+    </td>
+    <td>
+      <p class="text-sm">{{ item?.full_name }}</p>
+    </td>
+    <td>
+      <p
+        :class="[
+          item?.role == 'admin' ? 'success-btn' : 'warning-btn',
+          'status-btn ',
+        ]"
+      >
+        {{ item?.role }}
+      </p>
+    </td>
+    <td>
+      <p class="text-sm">{{ item?.address_detail }}</p>
+    </td>
+    <td>
+      <p class="text-sm">{{ item?.phone }}</p>
+    </td>
 
-  <td>
-    <p class="text-sm">{{ item?.cart.length }}</p>
-  </td>
+    <!-- <td>
+      <p class="text-sm">{{ item?.cart.length }}</p>
+    </td> -->
 
-  <td>
-    <div class="action justify-content-end">
-      <!-- <button class="edit">
+    <td>
+      <div class="action justify-content-end">
+        <!-- <button class="edit">
           <i class="lni lni-pencil"></i>
         </button> -->
-      <button
-        class="more-btn ml-10 dropdown-toggle"
-        id="moreAction1"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        <i class="lni lni-more-alt"></i>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-        <li class="dropdown-item">
-          <a class="text-gray">Chi tiết</a>
-        </li>
-        <li class="dropdown-item">
-          <a class="text-gray" @click="deleteUser(item?._id)">Xóa</a>
-        </li>
-      </ul>
-    </div>
-  </td>
+        <button
+          class="more-btn ml-10 dropdown-toggle"
+          id="moreAction1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="lni lni-more-alt"></i>
+        </button>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="moreAction1"
+        >
+          <li class="dropdown-item">
+            <a class="text-gray">Chi tiết</a>
+          </li>
+          <li class="dropdown-item">
+            <a class="text-gray" @click="deleteUser(item?._id)">Xóa</a>
+          </li>
+        </ul>
+      </div>
+    </td>
+  </tr>
 </template>
 
 <script lang="ts">
@@ -60,7 +65,6 @@ export default defineComponent({
   props: {
     item: {
       type: Object,
-      requied: true,
     },
   },
 

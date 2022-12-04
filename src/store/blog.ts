@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-import { blog, comment,rep_comment } from "../service/blog";
+import { blog, comment, rep_comment } from "../service/blog";
 
 export const blogStore = defineStore({
     id: "blog",
@@ -29,14 +29,23 @@ export const blogStore = defineStore({
             created_at: 0 as number,
             description: "" as string,
             imageUrl: "" as string,
-            comment: [{
-                _id: "" as string,
-                created_at: 0 as number,
-                content: '' as string,
-                user: {
-                    full_name: "" as string,
+            comment: [
+                {
+                    _id: "" as string,
+                    created_at: 0 as number,
+                    content: "" as string,
+                    user: {
+                        full_name: "" as string,
+                    },
+                    rep_comment: [
+                        {
+                            user: { full_name: "" as string },
+                            content: "" as string,
+                            created_at: 0 as number,
+                        },
+                    ],
                 },
-            }]
+            ],
         },
     }),
     getters: {},
@@ -55,7 +64,6 @@ export const blogStore = defineStore({
                     });
             });
         },
-
 
         getBlogDetail(id: any) {
             return new Promise((resolve, reject) => {
@@ -79,7 +87,7 @@ export const blogStore = defineStore({
                         content: value,
                     })
                     .then((res) => {
-                        resolve(res)
+                        resolve(res);
                     })
                     .catch((err) => {
                         reject(err);
@@ -94,7 +102,7 @@ export const blogStore = defineStore({
                         content: value,
                     })
                     .then((res) => {
-                        resolve(res)
+                        resolve(res);
                     })
                     .catch((err) => {
                         reject(err);
@@ -107,14 +115,13 @@ export const blogStore = defineStore({
                 comment
                     .delete(id)
                     .then((res) => {
-                        resolve(res)
+                        resolve(res);
                     })
                     .catch((err) => {
                         reject(err);
                     });
             });
         },
-
 
         createRepComment(id: any, user: string, value: string) {
             return new Promise((resolve, reject) => {
@@ -125,7 +132,7 @@ export const blogStore = defineStore({
                         content: value,
                     })
                     .then((res) => {
-                        resolve(res)
+                        resolve(res);
                     })
                     .catch((err) => {
                         reject(err);
@@ -140,7 +147,7 @@ export const blogStore = defineStore({
                         content: value,
                     })
                     .then((res) => {
-                        resolve(res)
+                        resolve(res);
                     })
                     .catch((err) => {
                         reject(err);
@@ -153,7 +160,7 @@ export const blogStore = defineStore({
                 rep_comment
                     .delete(id)
                     .then((res) => {
-                        resolve(res)
+                        resolve(res);
                     })
                     .catch((err) => {
                         reject(err);

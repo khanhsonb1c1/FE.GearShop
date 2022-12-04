@@ -31,15 +31,15 @@
       >
         <i class="lni lni-more-alt"></i>
       </button>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-        <li class="dropdown-item">
-          <a href="#0" class="text-gray">{{ getSttBtnNext }}</a>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li class="dropdown-item" @click="handleChangeSttOrder(status)">
+          <a class="text-gray">{{ getSttBtnNext }}</a>
         </li>
-        <li class="dropdown-item">
-          <a href="#0" class="text-gray">Hủy đơn</a>
+        <li class="dropdown-item" @click="handleChangeSttOrder('cancel')">
+          <a class="text-gray">Hủy đơn</a>
         </li>
-        <li class="dropdown-item">
-          <a href="#0" class="text-gray">Xóa</a>
+        <li class="dropdown-item" @click="handleDelete()">
+          <a class="text-gray">Xóa</a>
         </li>
       </ul>
     </div>
@@ -49,6 +49,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { formatValueMixin } from "../../../mixins/mixin";
+import { order } from "../../../service/order";
+import { orderStore } from "../../../store/order";
 export default defineComponent({
   mixins: [formatValueMixin],
   props: {
@@ -58,20 +60,38 @@ export default defineComponent({
     },
   },
 
+  data() {
+    return {
+      page: 1 as number,
+      status: "" as string,
+      alert: "" as string,
+      isAlert: false as boolean,
+      typeAlert: "" as string,
+    };
+  },
+
   computed: {
     getSttBtnNext() {
       if (this.item?.status == "create") {
+        this.status = "shipment";
         return "Đến Vận chuyển";
       }
-      if (this.item?.status == "open") {
-        return "Đến Đóng đơn";
-      }
+
       if (this.item?.status == "close") {
+        this.status = "create";
         return "Đến Tạo đơn";
       }
       if (this.item?.status == "shipment") {
+        this.status = "complete";
         return "Đến Đã xong";
       }
+      if (this.item?.status == "cancel") {
+        return "Đã hủy đơn";
+      }
+    },
+
+    get_current_page() {
+      return orderStore().page;
     },
 
     getUrl() {
@@ -90,6 +110,47 @@ export default defineComponent({
   methods: {
     handleRedirectDetail(id: any) {
       this.$router.push({ path: `/admin/order/${id}` });
+    },
+
+    handleChangeSttOrder(status: string) {
+      order
+        .update(this.item?._id, {
+          status: status,
+        })
+        .then((res) => {
+          orderStore().getOrderList(this.get_current_page);
+          this.alert = "Cập nhật thành công";
+          this.isAlert = true;
+          this.typeAlert = "success";
+
+          setTimeout(() => {
+            this.isAlert = false;
+          }, 3000);
+        })
+        .catch((err) => {
+          this.alert = err;
+          this.isAlert = true;
+          this.typeAlert = "error";
+
+          setTimeout(() => {
+            this.isAlert = false;
+          }, 3000);
+        });
+    },
+
+    handleDelete() {
+      orderStore()
+        .deleteOrder(this.item?._id)
+        .then((res) => {
+          orderStore().getOrderList(this.get_current_page);
+          this.alert = "Xóa thành công";
+          this.isAlert = true;
+          this.typeAlert = "success";
+
+          setTimeout(() => {
+            this.isAlert = false;
+          }, 3000);
+        });
     },
   },
 });

@@ -71,6 +71,12 @@
           </tbody>
         </table>
       </div>
+      <Pagination
+        :page="page"
+        :current_page="current_page"
+        :last_page="last_page"
+        @update:page="page = $event"
+      />
     </div>
   </div>
 </template>
@@ -78,6 +84,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { productStore } from "../../../store/product";
+import Pagination from "../../animation/Pagination.vue";
 import TableProductItem from "./TableProductItem.vue";
 export default defineComponent({
   data() {
@@ -94,18 +101,30 @@ export default defineComponent({
     product_list() {
       return productStore().product_list;
     },
+    current_page() {
+      return productStore().current_page;
+    },
+    last_page() {
+      return productStore().last_page;
+    },
+  },
+
+  watch: {
+    page() {
+      this.getProducts();
+    },
   },
 
   methods: {
     getProducts() {
-      productStore().getProductList(this.page);
+      productStore().getProductList(this.page, "created_at", "", "");
     },
 
     showCreateForm() {
       productStore().changeShowForm();
     },
   },
-  components: { TableProductItem },
+  components: { TableProductItem, Pagination },
 });
 </script>
 

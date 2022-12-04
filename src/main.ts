@@ -8,7 +8,7 @@ import { createPinia } from "pinia";
 import axios from "axios";
 // import lodash from "lodash";
 import VueAxios from "vue-axios";
-// import "bootstrap/dist/css/bootstrap.css"
+
 import "bootstrap/dist/js/bootstrap.js"
 
 import VueCookies from 'vue3-cookies'

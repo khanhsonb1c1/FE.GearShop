@@ -6,8 +6,8 @@ const order = {
     get_detail(id: any) {
         return gearshop.get(`/api/cart/${id}`);
     },
-    get_all(params?: object) {
-        return gearshop.get(`/api/cart`, params);
+    get_all(page: number) {
+        return gearshop.get(`/api/cart?page=${page}`);
     },
 
     get_default(id: string, status: string) {

@@ -6,6 +6,7 @@ export const orderStore = defineStore({
 
     state: () => ({
         last_page: 0 as number,
+        page: 1 as number,
         number_order: 0 as number,
 
         cart_default: {
@@ -90,13 +91,14 @@ export const orderStore = defineStore({
         getOrderList(page: number) {
             return new Promise((resolve, reject) => {
                 order
-                    .get_all({
-                        page: page,
-                    })
+                    .get_all(
+                        page
+                    )
                     .then((res) => {
-                        (this.cart_list = res.data.data),
-                            (this.last_page = res.data.last_page),
-                            resolve(this.cart_list);
+                        this.cart_list = res.data.data;
+                        this.last_page = res.data.last_page;
+                        this.page = res.data.current_page;
+                        resolve(this.cart_list);
                     })
                     .catch((err) => {
                         reject(err);

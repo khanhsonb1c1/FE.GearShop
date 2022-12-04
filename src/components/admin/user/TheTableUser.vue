@@ -20,25 +20,13 @@
                 <h6 class="text-sm text-medium">Tên</h6>
               </th>
               <th class="min-width">
-                <h6 class="text-sm text-medium">
-                  Vai trò <i class="lni lni-arrows-vertical"></i>
-                </h6>
+                <h6 class="text-sm text-medium">Vai trò</h6>
               </th>
               <th class="min-width">
-                <h6 class="text-sm text-medium">
-                  Địa chỉ <i class="lni lni-arrows-vertical"></i>
-                </h6>
+                <h6 class="text-sm text-medium">Địa chỉ</h6>
               </th>
               <th class="min-width">
-                <h6 class="text-sm text-medium">
-                  SĐT <i class="lni lni-arrows-vertical"></i>
-                </h6>
-              </th>
-
-              <th class="min-width">
-                <h6 class="text-sm text-medium">
-                  đơn hàng <i class="lni lni-arrows-vertical"></i>
-                </h6>
+                <h6 class="text-sm text-medium">SĐT</h6>
               </th>
 
               <th>
@@ -49,9 +37,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in user_list" :key="index">
-              <TableUserItem :item="item" />
-            </tr>
+            <TableUserItem
+              v-for="(item, index) in user_list"
+              :key="index"
+              :item="item"
+            />
           </tbody>
         </table>
       </div>
