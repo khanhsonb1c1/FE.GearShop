@@ -10,8 +10,8 @@ const category = {
         return gearshop.get(`/api/category`);
     },
 
-    update(id: string) {
-        return gearshop.put(`/api/category/${id}`);
+    update(id: string, params: object) {
+        return gearshop.put(`/api/category/${id}`, params);
     },
 
     delete(id: string) {

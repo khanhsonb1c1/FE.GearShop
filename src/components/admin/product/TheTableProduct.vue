@@ -15,16 +15,47 @@
         <div class="left">
           <h6 class="text-medium mb-30">Danh sách sản phẩm</h6>
         </div>
-        <div class="right">
+        <div class="right" style="display: flex">
           <div class="select-style-1">
             <div class="select-position select-sm">
-              <select class="light-bg">
-                <option value="">Ngày tạo</option>
-                <option value="">Giá</option>
-                <option value="">Số lượng</option>
+              <select class="light-bg" v-model="status">
+                <option value="created_at">Ngày tạo</option>
+                <option value="price">Giá</option>
+                <option value="quantity">Số lượng</option>
               </select>
             </div>
           </div>
+
+          <div class="select-style-1" style="margin-left: 20px">
+            <div class="select-position select-sm">
+              <select class="light-bg" v-model="category">
+                <option value="">Danh mục</option>
+                <option
+                  v-for="(itemz, indexz) in getCategory"
+                  :key="indexz"
+                  :value="itemz._id"
+                >
+                  {{ itemz.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="select-style-1" style="margin-left: 20px">
+            <div class="select-position select-sm">
+              <select class="light-bg" v-model="company">
+                <option value="">Thương hiệu</option>
+                <option
+                  v-for="(item, index) in getCompany"
+                  :key="index"
+                  :value="item._id"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+
           <!-- end select -->
         </div>
       </div>
@@ -83,6 +114,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { categoryStore } from "../../../store/category";
+import { companyStore } from "../../../store/company";
 import { productStore } from "../../../store/product";
 import Pagination from "../../animation/Pagination.vue";
 import TableProductItem from "./TableProductItem.vue";
@@ -90,6 +123,9 @@ export default defineComponent({
   data() {
     return {
       page: 1 as number,
+      status: "created_at",
+      category: "",
+      company: "",
     };
   },
 
@@ -107,17 +143,41 @@ export default defineComponent({
     last_page() {
       return productStore().last_page;
     },
+    getCompany() {
+      return companyStore().company_list;
+    },
+
+    getCategory() {
+      return categoryStore().category_list;
+    },
   },
 
   watch: {
     page() {
       this.getProducts();
     },
+
+    status() {
+      this.getProducts();
+    },
+
+    category() {
+      this.getProducts();
+    },
+
+    company() {
+      this.getProducts();
+    },
   },
 
   methods: {
     getProducts() {
-      productStore().getProductList(this.page, "created_at", "", "");
+      productStore().getProductList(
+        this.page,
+        this.status,
+        this.category,
+        this.company
+      );
     },
 
     showCreateForm() {

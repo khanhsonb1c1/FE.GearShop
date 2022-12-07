@@ -118,7 +118,7 @@ export default defineComponent({
           status: status,
         })
         .then((res) => {
-          orderStore().getOrderList(this.get_current_page);
+          orderStore().getOrderList(this.get_current_page, "");
           this.alert = "Cập nhật thành công";
           this.isAlert = true;
           this.typeAlert = "success";
@@ -142,7 +142,7 @@ export default defineComponent({
       orderStore()
         .deleteOrder(this.item?._id)
         .then((res) => {
-          orderStore().getOrderList(this.get_current_page);
+          orderStore().getOrderList(this.get_current_page, "");
           this.alert = "Xóa thành công";
           this.isAlert = true;
           this.typeAlert = "success";

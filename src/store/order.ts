@@ -39,6 +39,7 @@ export const orderStore = defineStore({
                 user: {
                     full_name: "" as string,
                 },
+                total: 0 as number,
                 created_at: 0 as number,
                 status: "" as string,
                 product_list: [
@@ -57,6 +58,7 @@ export const orderStore = defineStore({
             user: {
                 full_name: "" as string,
             },
+            total: 0 as number,
             created_at: 0 as number,
             status: "" as string,
             product_list: [
@@ -88,17 +90,18 @@ export const orderStore = defineStore({
     actions: {
 
 
-        getOrderList(page: number) {
+        getOrderList(page: number, status: string) {
             return new Promise((resolve, reject) => {
                 order
                     .get_all(
-                        page
+                        page,
+                        status
                     )
                     .then((res) => {
                         this.cart_list = res.data.data;
                         this.last_page = res.data.last_page;
                         this.page = res.data.current_page;
-                        resolve(this.cart_list);
+                        resolve(res);
                     })
                     .catch((err) => {
                         reject(err);
@@ -110,7 +113,9 @@ export const orderStore = defineStore({
             return new Promise((resolve, reject) => {
                 order
                     .update(id, {
+                        total: this.get_total_default,
                         status: status,
+
                     })
                     .then((res) => {
 

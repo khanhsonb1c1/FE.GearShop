@@ -10,8 +10,8 @@ const blog = {
         return gearshop.get(`/api/blog`, params);
     },
 
-    update(id: string) {
-        return gearshop.put(`/api/blog/${id}`);
+    update(id: string, params: object) {
+        return gearshop.put(`/api/blog/${id}`, params);
     },
 
     delete(id: string) {

@@ -33,7 +33,7 @@
         <i class="lni lni-more-alt"></i>
       </button>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-        <li class="dropdown-item">
+        <li class="dropdown-item" @click="isShow = true">
           <a class="text-gray">Chi tiết</a>
         </li>
         <li class="dropdown-item">
@@ -41,6 +41,11 @@
         </li>
       </ul>
     </div>
+    <the-edit-product-form
+      :item="item"
+      v-if="isShow"
+      @handleClose="handleClose"
+    />
   </td>
 </template>
 
@@ -48,13 +53,21 @@
 import { defineComponent } from "vue";
 import { formatValueMixin } from "../../../mixins/mixin";
 import { productStore } from "../../../store/product";
+import TheEditProductForm from "./TheEditProductForm.vue";
 export default defineComponent({
+  components: { TheEditProductForm },
   mixins: [formatValueMixin],
   props: {
     item: {
       type: Object,
       requied: true,
     },
+  },
+
+  data() {
+    return {
+      isShow: false,
+    };
   },
 
   computed: {
@@ -69,6 +82,10 @@ export default defineComponent({
   methods: {
     deleteProduct(id: string) {
       productStore().deleteProduct(id);
+    },
+
+    handleClose() {
+      this.isShow = false;
     },
   },
 });
