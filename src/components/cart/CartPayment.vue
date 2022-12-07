@@ -67,12 +67,21 @@ export default defineComponent({
       return orderStore().cart_default._id;
     },
   },
-
+  
+  data(){
+  return {
+  show: false,
+  title: "",
+  content: "",
+  }
+  }
+  
   methods: {
     handleCreateOrder() {
       orderStore()
         .updateOrder(this.id_cart, "close")
         .then(() => {
+        
           orderStore().getOrderDefault(this.id_user);
         })
         .catch((err) => {});
