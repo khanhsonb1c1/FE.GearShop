@@ -8,6 +8,12 @@
         <span>{{ comment?.user.full_name }}</span>
         <p>{{ comment?.content }}</p>
         <a @click="isRepComment = !isRepComment">Trả lời</a>
+        <a
+          v-if="checkAuthCmt"
+          style="margin-left: 20px"
+          @click="deleteCmt(comment?._id)"
+          >Xóa bình luận</a
+        >
       </div>
     </div>
     <div style="padding-left: 50px" v-if="isRepComment">
@@ -49,6 +55,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { formatValueMixin } from "../../mixins/mixin";
+import { comment } from "../../service/blog";
 import { authStore } from "../../store/auth";
 import { blogStore } from "../../store/blog";
 import RepComment from "./RepComment.vue";
@@ -65,6 +72,7 @@ export default defineComponent({
     return {
       isRepComment: false as boolean,
       repComment: "" as string,
+
       // get_placeholder: "sdhfksdhfks",
     };
   },
@@ -78,6 +86,10 @@ export default defineComponent({
       return authStore().user._id;
     },
 
+    get_user_cmt() {
+      return this.comment?.user._id;
+    },
+
     get_id_blog() {
       return blogStore().blog_detail._id;
     },
@@ -85,6 +97,11 @@ export default defineComponent({
     get_placeholder() {
       const name = this.comment?.user.full_name;
       return "Trả lời bình luận của " + name;
+    },
+    checkAuthCmt() {
+      if (this.get_user_cmt == this.get_user_id) {
+        return true;
+      } else return false;
     },
   },
 
@@ -100,6 +117,12 @@ export default defineComponent({
           this.repComment = "";
           blogStore().getBlogDetail(this.get_id_blog);
         });
+    },
+
+    deleteCmt(id: string) {
+      comment.delete(this.get_id_comment).then(() => {
+        blogStore().getBlogDetail(this.get_id_blog);
+      });
     },
   },
 

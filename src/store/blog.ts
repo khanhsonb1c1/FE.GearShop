@@ -36,6 +36,7 @@ export const blogStore = defineStore({
                     content: "" as string,
                     user: {
                         full_name: "" as string,
+                        _id: "" as string,
                     },
                     rep_comment: [
                         {

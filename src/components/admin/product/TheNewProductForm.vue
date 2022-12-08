@@ -164,7 +164,7 @@ export default defineComponent({
           "Content-Type": "multipart/form-data",
         },
       }).then((res) => {
-        productStore().getProductList(1, "created_at", "", "");
+        productStore().getProductList(1, "created_at", "", "", "");
       });
     },
   },

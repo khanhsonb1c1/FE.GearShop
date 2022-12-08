@@ -172,7 +172,7 @@ export default defineComponent({
         })
 
         .then((res) => {
-          productStore().getProductList(1, "created_at", "", "");
+          productStore().getProductList(1, "created_at", "", "", "");
           this.$emit("handleClose");
         });
     },

@@ -94,6 +94,11 @@
               <span>{{ filter_name.company }}</span>
               <p @click="handleCloseCompany()">X</p>
             </div>
+
+            <div class="label_filter label1" v-if="filterSearch != ''">
+              <span>{{ filterSearch }}</span>
+              <p @click="handleClearFilterSearch()">X</p>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -141,6 +146,7 @@ export default defineComponent({
       filter_name: {
         category: "" as string,
         company: "" as string,
+        filterSearch: "" as string,
         sort: "Ngày cập nhật gần nhất" as string,
       },
     };
@@ -163,10 +169,17 @@ export default defineComponent({
     company_list() {
       return companyStore().company_list;
     },
+    filterSearch() {
+      return productStore().filter;
+    },
   },
 
   watch: {
     page() {
+      this.getProducts();
+    },
+
+    filterSearch() {
       this.getProducts();
     },
   },
@@ -175,6 +188,11 @@ export default defineComponent({
     handleChooseCate(id: string, name: string) {
       this.filter.category = id;
       this.filter_name.category = name;
+    },
+
+    handleClearFilterSearch() {
+      productStore().clearFilter();
+      this.getProducts();
     },
 
     handleCloseCompany() {
@@ -195,7 +213,8 @@ export default defineComponent({
           this.page,
           this.filter.sort,
           this.filter.category,
-          this.filter.company
+          this.filter.company,
+          this.filterSearch
         )
         .then((res: any) => {
           this.last_page = res.data.last_page;

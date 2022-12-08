@@ -6,8 +6,8 @@ const product = {
     get_detail(id: string) {
         return gearshop.get(`/api/product/${id}`);
     },
-    get_all(page: number, sort: string, category: string, company: string) {
-        return gearshop.get(`/api/product?page=${page}&sort=${sort}&category=${category}&company=${company}`);
+    get_all(page: number, sort: string, category: string, company: string, filter: string) {
+        return gearshop.get(`/api/product?page=${page}&sort=${sort}&category=${category}&company=${company}&filter=${filter}`);
     },
 
     update(id: string, params?: object) {

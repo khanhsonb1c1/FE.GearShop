@@ -53,7 +53,7 @@ export default defineComponent({
   methods: {
     getProduct() {
       product
-        .get_all(1, "-sale", "", "")
+        .get_all(1, "-sale", "", "", "")
         .then((res) => {
           this.product_list = res.data.data;
           this.last_page = this.last_page;

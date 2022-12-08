@@ -22,13 +22,13 @@ const account = {
         return gearshop.post(`/api/auth/login/`, params);
     },
     register(params?: object) {
-        return gearshop.get(`/api/auth/register/`, params);
+        return gearshop.post(`/api/auth/register/`, params);
     },
     logout() {
-        return gearshop.get(`/api/auth/logout`);
+        return gearshop.post(`/api/auth/logout`);
     },
     refresh(params?: object) {
-        return gearshop.get(`/api/auth/refresh`, params);
+        return gearshop.post(`/api/auth/refresh`, params);
     },
 
 

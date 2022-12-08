@@ -176,7 +176,8 @@ export default defineComponent({
         this.page,
         this.status,
         this.category,
-        this.company
+        this.company,
+        ""
       );
     },
 

@@ -45,7 +45,7 @@ export default defineComponent({
 
   methods: {
     getProducts() {
-      productStore().getProductList(this.page, "created_at", "", "");
+      productStore().getProductList(this.page, "created_at", "", "", "");
     },
   },
 

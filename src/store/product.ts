@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
 import { product } from "../service/product";
 
-
 export const productStore = defineStore({
-    id: 'product',
+    id: "product",
 
     state: () => ({
+        filter: "" as string,
         showForm: false,
         last_page: 1 as number,
         current_page: 1 as number,
@@ -22,43 +22,53 @@ export const productStore = defineStore({
                 company: {
                     name: "" as string,
                 },
-            }
+            },
         ],
-
     }),
-    getters: {
-
-    },
+    getters: {},
     actions: {
-        getProductList(page: number, sort: string, category: string, company: string) {
+        getProductList(
+            page: number,
+            sort: string,
+            category: string,
+            company: string,
+            filter: string
+        ) {
             return new Promise((resolve, reject) => {
-                product.get_all(
-                    page,
-                    sort,
-                    category,
-                    company
-                ).then((res) => {
-                    this.product_list = res.data.data;
-                    this.last_page = res.data.last_page;
-                    this.current_page = res.data.current_page;
+                product
+                    .get_all(page, sort, category, company, filter)
+                    .then((res) => {
+                        this.product_list = res.data.data;
+                        this.last_page = res.data.last_page;
+                        this.current_page = res.data.current_page;
 
-                    resolve(res)
-                }).catch(err => {
-                    reject(err)
-                })
+                        resolve(res);
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
             });
         },
 
+        updateFilter(filter: string) {
+            this.filter = filter;
+        },
 
+        clearFilter() {
+            this.filter = "";
+        },
 
         deleteProduct(id: string) {
             return new Promise((resolve, reject) => {
-                product.delete(id).then((res) => {
-                    this.getProductList(1, 'created_at', '', '')
-                    resolve(res)
-                }).catch(err => {
-                    reject(err)
-                })
+                product
+                    .delete(id)
+                    .then((res) => {
+                        this.getProductList(1, "created_at", "", "", "");
+                        resolve(res);
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
             });
         },
 
@@ -66,4 +76,4 @@ export const productStore = defineStore({
             this.showForm = !this.showForm;
         },
     },
-})
+});

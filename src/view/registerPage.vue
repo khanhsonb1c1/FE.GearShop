@@ -117,6 +117,7 @@
                       class="button-group d-flex justify-content-center flex-wrap"
                     >
                       <div
+                        @click="handleRegister()"
                         class="main-btn primary-btn btn-hover w-100 text-center"
                       >
                         Đăng ký
@@ -182,6 +183,7 @@ export default defineComponent({
           password: this.password,
           address_detail: this.address,
           full_name: this.full_name,
+          user_name: this.user_name,
         })
         .then((res) => {
           this.title = "Create account successfully !";

@@ -21,6 +21,10 @@ const order = {
     delete(id: string) {
         return gearshop.delete(`/api/cart/${id}`);
     },
+
+    get_order_user(page: number, user: string) {
+        return gearshop.get(`/api/cart?page=${page}&user=${user}`);
+    }
 };
 
 const product_in_order = {

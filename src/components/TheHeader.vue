@@ -57,29 +57,9 @@
             </a>
             <!-- End Header Logo -->
           </div>
-          <div class="col-lg-5 col-md-7 d-xs-none">
-            <!-- Start Main Menu Search -->
-            <div class="main-menu-search">
-              <!-- navbar search start -->
-              <div class="navbar-search search-style-5">
-                <div class="search-select">
-                  <div class="select-position">
-                    <select id="select1">
-                      <option selected>Tìm kiếm</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="search-input">
-                  <input type="text" placeholder="..." />
-                </div>
-                <div class="search-btn">
-                  <button><i class="lni lni-search-alt"></i></button>
-                </div>
-              </div>
-              <!-- navbar search Ends -->
-            </div>
-            <!-- End Main Menu Search -->
-          </div>
+
+          <SearchProduct />
+
           <div class="col-lg-4 col-md-2 col-5">
             <div class="middle-right-area">
               <div class="nav-hotline">
@@ -266,9 +246,10 @@ import { categoryStore } from "../store/category";
 import { companyStore } from "../store/company";
 import { orderStore } from "../store/order";
 import CartItemPopup from "./CartItemPopup.vue";
+import SearchProduct from "./product/SearchProduct.vue";
 
 export default defineComponent({
-  components: { CartItemPopup },
+  components: { CartItemPopup, SearchProduct },
   computed: {
     categories() {
       return categoryStore().category_list;

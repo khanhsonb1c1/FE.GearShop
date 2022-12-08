@@ -17,6 +17,7 @@ import registerPageVue from "./view/registerPage.vue";
 import UserManagerPageVue from "./view/UserManagerPage.vue";
 import ProductPageVue from "./components/product/ProductPage.vue";
 import { authStore } from "./store/auth";
+import TheAuthPageVue from "./view/AuthPage.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -56,6 +57,13 @@ const router = createRouter({
             name: "blog",
             component: BlogPageVue,
             meta: { title: "Blog" },
+        },
+
+        {
+            path: "/auth",
+            name: "auth",
+            component: TheAuthPageVue,
+            meta: { title: "Auth" },
         },
 
         {
