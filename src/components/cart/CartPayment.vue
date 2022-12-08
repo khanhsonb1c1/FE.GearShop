@@ -42,6 +42,13 @@
       >
         Xác nhận
       </button>
+
+      <alert-box
+        :content="content"
+        :sstyle="style"
+        :title="title"
+        v-if="show"
+      />
     </div>
   </div>
 </template>
@@ -51,6 +58,7 @@ import { defineComponent } from "vue";
 import { formatValueMixin } from "../../mixins/mixin";
 import { authStore } from "../../store/auth";
 import { orderStore } from "../../store/order";
+import AlertBox from "../animation/AlertBox.vue";
 
 export default defineComponent({
   mixins: [formatValueMixin],
@@ -67,28 +75,43 @@ export default defineComponent({
       return orderStore().cart_default._id;
     },
   },
-  
-  data(){
-  return {
-  show: false,
-  title: "",
-  content: "",
-  }
-  }
-  
+
+  data() {
+    return {
+      show: false,
+      title: "",
+      content: "",
+      style: "",
+    };
+  },
+
   methods: {
     handleCreateOrder() {
       orderStore()
         .updateOrder(this.id_cart, "close")
-        .then(() => {
-        
+        .then((res) => {
           orderStore().getOrderDefault(this.id_user);
+          this.show = true;
+          this.title = " Thành công";
+
+          this.style = "success";
+          setTimeout(() => {
+            this.show = false;
+          }, 3000);
         })
-        .catch((err) => {});
+        .catch((err) => {
+          this.show = true;
+          this.title = " Có lỗi";
+          this.content = `${err}`;
+          this.style = "error";
+          setTimeout(() => {
+            this.show = false;
+          }, 3000);
+        });
     },
   },
 
-  components: {},
+  components: { AlertBox },
 });
 </script>
 
