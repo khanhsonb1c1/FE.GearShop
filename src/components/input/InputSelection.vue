@@ -9,6 +9,7 @@
       </select>
     </div>
   </div>
+
   <!-- end select -->
   <!-- <div class="select-style-2">
       <div class="select-position">
@@ -25,6 +26,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import _ from "lodash";
+import { categoryStore } from "../../store/category";
+import { companyStore } from "../../store/company";
 export default defineComponent({
   props: {
     title: {
@@ -32,21 +35,47 @@ export default defineComponent({
       requied: true,
       default: "",
     },
-    list: {
-      type: Array,
-      requied: true,
-    },
+
     value: {
       type: String,
       required: false,
       default: "",
+    },
+
+    nameList: {
+      type: String,
     },
   },
 
   data() {
     return {
       model: "" as string,
+      list: [
+        {
+          name: "" as string,
+          _id: "" as string,
+        },
+      ],
     };
+  },
+
+  mounted() {
+    if (this.nameList == "category") {
+      this.list = this.categories;
+    }
+    if (this.nameList == "company") {
+      this.list = this.company_list;
+    }
+  },
+
+  computed: {
+    categories() {
+      return categoryStore().category_list;
+    },
+
+    company_list() {
+      return companyStore().company_list;
+    },
   },
 
   watch: {

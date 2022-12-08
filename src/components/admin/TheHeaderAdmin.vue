@@ -43,37 +43,6 @@
                         src="https://img.icons8.com/ios-glyphs/60/null/administrator-male.png"
                       />
                     </div>
-                    <div class="content">
-                      <h6>
-                        John Doe
-                        <span class="text-regular">
-                          comment on a product.
-                        </span>
-                      </h6>
-                      <p>
-                        Lorem ipsum dolor sit amet, consect etur adipiscing elit
-                        Vivamus tortor.
-                      </p>
-                      <span>10 mins ago</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="#0">
-                    <div class="image">
-                      <img src="assets/images/lead/lead-1.png" alt="" />
-                    </div>
-                    <div class="content">
-                      <h6>
-                        Jonathon
-                        <span class="text-regular"> like on a product. </span>
-                      </h6>
-                      <p>
-                        Lorem ipsum dolor sit amet, consect etur adipiscing elit
-                        Vivamus tortor.
-                      </p>
-                      <span>10 mins ago</span>
-                    </div>
                   </a>
                 </li>
               </ul>
@@ -94,47 +63,7 @@
               <ul
                 class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="message"
-              >
-                <li>
-                  <a>
-                    <div class="image">
-                      <img src="assets/images/lead/lead-5.png" alt="" />
-                    </div>
-                    <div class="content">
-                      <h6>Jacob Jones</h6>
-                      <p>Hey!I can across your profile and ...</p>
-                      <span>10 mins ago</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="#0">
-                    <div class="image">
-                      <img src="assets/images/lead/lead-3.png" alt="" />
-                    </div>
-                    <div class="content">
-                      <h6>John Doe</h6>
-                      <p>Would you mind please checking out</p>
-                      <span>12 mins ago</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <div class="image">
-                      <img
-                        src="../../assets/assets/images/lead/lead-1.png"
-                        alt=""
-                      />
-                    </div>
-                    <div class="content">
-                      <h6>Anee Lee</h6>
-                      <p>Hey! are you available for freelance?</p>
-                      <span>1h ago</span>
-                    </div>
-                  </a>
-                </li>
-              </ul>
+              ></ul>
             </div>
             <!-- message end -->
             <!-- filter start -->
