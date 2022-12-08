@@ -41,4 +41,22 @@ const product_in_order = {
     },
 }
 
-export { order, product_in_order };
+const voucher = {
+    create(params?: object) {
+        return gearshop.post(`/api/voucher/`, params);
+    },
+
+    get_all() {
+        return gearshop.get(`/api/voucher/`);
+    },
+
+    get_detail(filter: string) {
+        return gearshop.get(`/api/voucher?filter=${filter}`);
+    },
+
+    delete(id: string) {
+        return gearshop.delete(`/api/voucher/${id}`);
+    },
+}
+
+export { order, product_in_order, voucher };

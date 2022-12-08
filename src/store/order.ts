@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { order, product_in_order } from "../service/order";
+import { order, product_in_order, voucher } from "../service/order";
 
 export const orderStore = defineStore({
     id: "order",
@@ -8,6 +8,15 @@ export const orderStore = defineStore({
         last_page: 0 as number,
         page: 1 as number,
         number_order: 0 as number,
+
+        voucher: {
+            code: "",
+            value: 0 as number,
+        },
+
+        sale: 0 as number,
+
+        totalPay: 0 as number,
 
         cart_default: {
             _id: "" as string,
@@ -69,11 +78,14 @@ export const orderStore = defineStore({
                 },
             ] as any,
         },
+
+
     }),
 
     getters: {
         get_id_cart: (state) => state.cart_default._id,
         get_total_default: (state) => {
+
             const arr = state.cart_default.product_list;
 
             function pricehandler(x: any, y: any) {
@@ -85,9 +97,39 @@ export const orderStore = defineStore({
 
             return total;
         },
+
+
     },
 
     actions: {
+
+        getVoucher(code: string) {
+            return new Promise((resolve, reject) => {
+                voucher
+                    .get_detail(
+                        code
+                    )
+                    .then((res) => {
+                        this.voucher = res.data.data;
+                        this.check();
+                        resolve(res);
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
+            });
+        },
+
+        check() {
+            if (voucher == null) {
+                this.sale = 0;
+                this.totalPay = this.get_total_default;
+
+            } else {
+                this.sale = this.voucher.value;
+                this.totalPay = this.get_total_default - this.sale;
+            }
+        },
 
 
         getOrderList(page: number, status: string) {
@@ -113,12 +155,12 @@ export const orderStore = defineStore({
             return new Promise((resolve, reject) => {
                 order
                     .update(id, {
-                        total: this.get_total_default,
+                        total: this.totalPay,
                         status: status,
 
                     })
                     .then((res) => {
-
+                        this.check();
                         resolve(res);
                     })
                     .catch((err) => {
@@ -151,6 +193,7 @@ export const orderStore = defineStore({
                         this.cart_default = res.data[0];
                         this.number_order = res.data[0].product_list.length;
                         // (this.cart_default = res.data.data), resolve(this.cart_default);
+                        this.check();
                         resolve(this.cart_default);
                     })
                     .catch((err) => {
@@ -174,6 +217,7 @@ export const orderStore = defineStore({
                     })
                     .then((res) => {
                         resolve(res);
+
                         this.getOrderDefault(id_user);
                     })
                     .catch((err) => {

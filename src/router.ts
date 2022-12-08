@@ -18,6 +18,7 @@ import UserManagerPageVue from "./view/UserManagerPage.vue";
 import ProductPageVue from "./components/product/ProductPage.vue";
 import { authStore } from "./store/auth";
 import TheAuthPageVue from "./view/AuthPage.vue";
+import BannerPageVue from "./view/BannerPage.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -47,8 +48,6 @@ const router = createRouter({
             meta: {
                 title: "Giỏ hàng",
                 authRequiredAdminAndCustomer: true,
-
-
             },
         },
 
@@ -95,6 +94,13 @@ const router = createRouter({
             name: "product-manager",
             component: ProductManagerPageVue,
             meta: { title: "Dashboard Product", authRequiredAdmin: true },
+        },
+
+        {
+            path: "/admin/banner",
+            name: "banner-manager",
+            component: BannerPageVue,
+            meta: { title: "Dashboard banner", authRequiredAdmin: true },
         },
 
         {
@@ -160,7 +166,6 @@ const router = createRouter({
 });
 
 router.beforeEach((routeTo, routeFrom, next) => {
-
     const authRequiredAdmin = routeTo.matched.some(
         (route) => route.meta.authRequiredAdmin
     );
@@ -178,7 +183,6 @@ router.beforeEach((routeTo, routeFrom, next) => {
             .catch(() => {
                 router.push({ path: "/login" });
             });
-
     } else if (authRequiredAdminAndCustomer) {
         authStore()
             .checkLogin()
@@ -188,7 +192,8 @@ router.beforeEach((routeTo, routeFrom, next) => {
             .catch(() => {
                 router.push({ path: "/login" });
             });
-    } return next();
+    }
+    return next();
 });
 
 export default router;

@@ -131,6 +131,14 @@
             </li>
 
             <li>
+              <a @click="changePage('/admin/banner')"> Banner </a>
+            </li>
+
+            <li>
+              <a @click="changePage('/admin/voucher')"> Voucher </a>
+            </li>
+
+            <li>
               <a @click="changePage('/admin/user')"> Tài khoản </a>
             </li>
           </ul>

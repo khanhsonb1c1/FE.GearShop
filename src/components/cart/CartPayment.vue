@@ -11,7 +11,7 @@
 
       <div class="d-flex justify-content-between mb-4">
         <h5 class="text-uppercase">Khuyến mãi</h5>
-        <h5>0</h5>
+        <h5>{{ formatPrice(getSale) }}</h5>
       </div>
 
       <h5 class="text-uppercase mb-3">voucher</h5>
@@ -22,10 +22,10 @@
             type="text"
             id="form3Examplea2"
             class="form-control form-control-lg"
+            v-model="filter"
+            v-on:keyup.enter="checkVoucher()"
           />
-          <label class="form-label" for="form3Examplea2"
-            >Nhập mã khuyến mãi của bạn</label
-          >
+          <label class="form-label">Nhập mã khuyến mãi của bạn</label>
         </div>
       </div>
 
@@ -33,7 +33,7 @@
 
       <div class="d-flex justify-content-between mb-5">
         <h5 class="text-uppercase">Tổng cộng</h5>
-        <h5>{{ formatPrice(getTotal) }}</h5>
+        <h5>{{ formatPrice(getTotalPay) }}</h5>
       </div>
 
       <button
@@ -56,6 +56,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { formatValueMixin } from "../../mixins/mixin";
+
 import { authStore } from "../../store/auth";
 import { orderStore } from "../../store/order";
 import AlertBox from "../animation/AlertBox.vue";
@@ -74,6 +75,14 @@ export default defineComponent({
     id_cart() {
       return orderStore().cart_default._id;
     },
+
+    getSale() {
+      return orderStore().sale;
+    },
+
+    getTotalPay() {
+      return orderStore().totalPay;
+    },
   },
 
   data() {
@@ -82,6 +91,8 @@ export default defineComponent({
       title: "",
       content: "",
       style: "",
+      filter: "" as string,
+      value: 0,
     };
   },
 
@@ -93,7 +104,6 @@ export default defineComponent({
           orderStore().getOrderDefault(this.id_user);
           this.show = true;
           this.title = " Thành công";
-
           this.style = "success";
           setTimeout(() => {
             this.show = false;
@@ -108,6 +118,10 @@ export default defineComponent({
             this.show = false;
           }, 3000);
         });
+    },
+
+    checkVoucher() {
+      orderStore().getVoucher(this.filter);
     },
   },
 

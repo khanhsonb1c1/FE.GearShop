@@ -66,5 +66,3 @@ export default defineComponent({
   components: { ProductItem },
 });
 </script>
-
-<style></style>

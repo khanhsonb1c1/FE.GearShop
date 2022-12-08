@@ -8,33 +8,31 @@
             <div class="hero-slider" style="">
               <!-- Start Single Slider -->
               <div class="single-slider">
-                <img :src="getUrl(imageList[0].imageUrl)" alt="" />
+                <img :src="getUrl(imageList[0].imageUrl)" />
               </div>
             </div>
             <!-- End Hero Slider -->
           </div>
         </div>
 
-        <!-- ! ===================== -->
-
-        <div class="col-lg-4 col-12">
+        <!-- <div class="col-lg-4 col-12">
           <div class="row">
             <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
-              <!-- Start Small Banner -->
               <div class="hero-small-banner">
-                <img :src="getUrl(imageList[2].imageUrl)" alt="" />
+                <div class="single-slider">
+                  <img :src="getUrl(imageList[2].imageUrl)" />
+                </div>
               </div>
-              <!-- End Small Banner -->
             </div>
             <div class="col-lg-12 col-md-6 col-12">
-              <!-- Start Small Banner -->
               <div class="hero-small-banner">
-                <img :src="getUrl(imageList[1].imageUrl)" alt="" />
+                <div class="single-slider">
+                  <img :src="getUrl(imageList[1].imageUrl)" />
+                </div>
               </div>
-              <!-- Start Small Banner -->
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- ========================= -->
       </div>
@@ -51,7 +49,7 @@ export default defineComponent({
     return {};
   },
 
-  created() {
+  mounted() {
     this.getImg();
   },
 

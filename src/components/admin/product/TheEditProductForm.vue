@@ -51,14 +51,14 @@
 
       <InputSelection
         title="Nhóm sản phẩm"
-        :list="categories"
+        nameList="category"
         :value="product.category"
         @update:value="product.category = $event"
       />
 
       <InputSelection
         title="Thương hiệu"
-        :list="companies"
+        nameList="company"
         :value="product.company"
         @update:value="product.company = $event"
       />
