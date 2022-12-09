@@ -80,6 +80,16 @@ export const orderStore = defineStore({
         },
 
 
+        voucher_list: [
+            {
+                _id: "" as string,
+                value: 0 as number,
+                created_at: 0 as number,
+                code: "" as string,
+            }
+        ],
+
+
     }),
 
     getters: {
@@ -112,6 +122,23 @@ export const orderStore = defineStore({
                     .then((res) => {
                         this.voucher = res.data.data;
                         this.check();
+                        resolve(res);
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
+            });
+        },
+
+        getVoucherList() {
+            return new Promise((resolve, reject) => {
+                voucher
+                    .get_all(
+
+                )
+                    .then((res) => {
+                        this.voucher_list = res.data.data;
+
                         resolve(res);
                     })
                     .catch((err) => {

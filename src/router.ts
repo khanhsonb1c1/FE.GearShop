@@ -19,6 +19,7 @@ import ProductPageVue from "./components/product/ProductPage.vue";
 import { authStore } from "./store/auth";
 import TheAuthPageVue from "./view/AuthPage.vue";
 import BannerPageVue from "./view/BannerPage.vue";
+import voucherPageVue from "./view/voucherPage.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -94,6 +95,13 @@ const router = createRouter({
             name: "product-manager",
             component: ProductManagerPageVue,
             meta: { title: "Dashboard Product", authRequiredAdmin: true },
+        },
+
+        {
+            path: "/admin/voucher",
+            name: "voucher-manager",
+            component: voucherPageVue,
+            meta: { title: "Dashboard Voucher", authRequiredAdmin: true },
         },
 
         {

@@ -92,6 +92,10 @@ export default defineComponent({
     status() {
       this.getOrderList();
     },
+
+    page() {
+      this.getOrderList();
+    },
   },
 
   created() {

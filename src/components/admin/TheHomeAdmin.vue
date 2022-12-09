@@ -41,7 +41,7 @@
               <h6 class="mb-10">Doanh thu</h6>
               <h3 class="text-bold mb-10">{{ formatPrice(getTotal) }}</h3>
               <p class="text-sm text-success">
-                <i class="lni lni-arrow-up"></i> +5.45%
+                <i class="lni lni-arrow-up"></i>
                 <span class="text-gray">Increased</span>
               </p>
             </div>

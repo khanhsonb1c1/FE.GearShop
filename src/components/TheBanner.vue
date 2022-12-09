@@ -20,14 +20,22 @@
             <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
               <div class="hero-small-banner">
                 <div class="single-slider">
-                  <img :src="getUrl(imageList[2].imageUrl)" />
+                  <!-- <img :src="getUrl(imageList[2].imageUrl)" /> -->
+                  <img
+                    src="http://localhost:8000//images/banner/1670496736971banner2.png"
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
             <div class="col-lg-12 col-md-6 col-12">
               <div class="hero-small-banner">
                 <div class="single-slider">
-                  <img :src="getUrl(imageList[1].imageUrl)" />
+                  <!-- <img :src="getUrl(imageList[1].imageUrl)" /> -->
+                  <img
+                    src="http://localhost:8000//images/banner/1670496728547banner3.jpg"
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
