@@ -15,7 +15,7 @@
           </div>
         </div>
 
-        <!-- <div class="col-lg-4 col-12">
+        <div class="col-lg-4 col-12">
           <div class="row">
             <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
               <div class="hero-small-banner">
@@ -32,7 +32,7 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
 
         <!-- ========================= -->
       </div>

@@ -23,27 +23,25 @@ import { bannerStore } from "../../../store/banner";
 export default defineComponent({
   data() {
     return {
-      category: {
-        status: 4 as number,
-        imgUrl: null as any,
-      },
+      imgUrl: null as any,
     };
   },
   methods: {
     onFileSelected(event: any) {
-      this.category.imgUrl = event.target.files[0];
+      this.imgUrl = event.target.files[0];
     },
 
     createcategory() {
       const formData = new FormData();
-      formData.append("imageUrl", this.category.imgUrl);
+      formData.append("imageUrl", this.imgUrl);
 
       this.axios({
-        url: "http://localhost:8000/api/banner",
+        url: `${import.meta.env.VITE_APP_GEARSHOP}api/banner/`,
         method: "post",
         data: formData,
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type":
+            "multipart/form-data; boundary=<calculated when request is sent>",
         },
       }).then((res) => {
         bannerStore().getBannerList(1, "");
